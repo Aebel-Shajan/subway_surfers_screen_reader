@@ -1,0 +1,13 @@
+
+#video-container {
+		position: relative;
+}
+
+#text-overlay {
+		position: absolute;
+		top: 20px;
+		left: 20px;
+		color: white;
+		background-color: rgba(0, 0, 0, 0.5);
+		padding: 5px;
+}

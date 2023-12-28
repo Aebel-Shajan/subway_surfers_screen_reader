@@ -1,0 +1,16 @@
+{
+	"name": "Gen Z Screen Reader",
+  "version": "0.0.1",
+  "manifest_version": 3,
+	"description": "Make any piece of content brain rot.",
+	"icons": {
+		"128": "images/genz-screenreader-logo.png"
+	},
+	"side_panel": {
+		"default_path": "sidePanel.html"
+	},
+	"permissions": ["sidePanel"],
+	"action": {
+    "default_title": "Click to open panel"
+  }
+}
