@@ -14,7 +14,7 @@
     "default_title": "Click to open panel"
   },
 	"background": {
-		"service_worker": "serviceWorker.js",
+		"service_worker": "js/dist/serviceWorker.bundle.js",
 		"type": "module"
 	}
 }
