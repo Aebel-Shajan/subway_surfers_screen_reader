@@ -14,11 +14,15 @@ header {
 	background-color: var(--secondary);
 	color: var(--primary);
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
 	font-size: x-large;
 	height: 5vh;
 	font-family: "Titan One";
+}
+.logo-image {
+	height: 100%;
+
 }
 
 main {
