@@ -12,5 +12,9 @@
 	"permissions": ["sidePanel"],
 	"action": {
     "default_title": "Click to open panel"
-  }
+  },
+	"background": {
+		"service_worker": "serviceWorker.js",
+		"type": "module"
+	}
 }
