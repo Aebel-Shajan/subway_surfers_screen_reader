@@ -9,12 +9,14 @@
 	"side_panel": {
 		"default_path": "sidePanel.html"
 	},
-	"permissions": ["sidePanel", "activeTab"],
+	"permissions": ["sidePanel", "activeTab", "tabs"],
 	"action": {
     "default_title": "Click to open panel"
   },
-	"background": {
-		"service_worker": "js/dist/serviceWorker.bundle.js",
-		"type": "module"
-	}
+	"content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["contentScript.js", "js/dist/bundle.js"]
+    }
+  ]
 }
