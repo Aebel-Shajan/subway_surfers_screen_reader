@@ -8,6 +8,7 @@ chrome.runtime.onMessage.addListener(
 			let parser = new DOMParser();
 			let doc = parser.parseFromString(document.documentElement.outerHTML, "text/html");
 			const scrapedContent = new Readability(doc).parse();
+			console.log(scrapedContent);
 			sendResponse({content: scrapedContent.textContent});
 		}
 	}
