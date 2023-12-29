@@ -6,7 +6,8 @@ async function sendMessageToActiveTab(message) {
 
 document.addEventListener("DOMContentLoaded", function () {
 	document.querySelector("#read-website").addEventListener('click', async () => {
-		const response = await sendMessageToActiveTab({action: "scrape-website"});
+		const response = await sendMessageToActiveTab({action: "read-website"});
+		console.log(response);
 		document.querySelector("#preview-text").innerText = response.content;
 	})
 });

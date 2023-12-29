@@ -34,6 +34,7 @@ main {
 #preview-text-container {
 	width: 100%;
 	padding: 1rem;
+	overflow: hidden;
 }
 #preview-text {
 	width: 100%;
