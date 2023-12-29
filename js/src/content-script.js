@@ -1,3 +1,4 @@
+import { Readability } from "@mozilla/readability";
 console.log("hello from content script!")
 
 chrome.runtime.onMessage.addListener(
