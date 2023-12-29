@@ -41,6 +41,9 @@ main {
 	height: 100%;
 	overflow-y: scroll;
 	background-color: var(--third);
+	font-size: 0.7rem;
+	overflow-wrap: break-word;
+	resize: none;
 }
 
 #options-container {
