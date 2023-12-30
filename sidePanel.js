@@ -19,7 +19,7 @@ async function sendMessageToActiveTab(message) {
 document.querySelector("#read-website").addEventListener('click', async () => {
 	try {
 		const response = await sendMessageToActiveTab({ action: "read-website" });
-		console.log(response);
+		console.log("Response message: ", response);
 		let scrapedContent = response.content;
 		document.querySelector("#preview-text").value = cleanUpText(scrapedContent.textContent);
 	} catch (error) {
@@ -32,6 +32,8 @@ document.querySelector("#read-website").addEventListener('click', async () => {
 let playPauseButton = document.querySelector("#play-pause-toggle");
 let stopButton = document.querySelector("#stop");
 let videoPlayer = document.querySelector("#video");
+let previewText = document.querySelector("#preview-text");
+let readButton = document.querySelector("#read-website");
 function setButtonState(button, state) {
 	button.className = state;
 	button.textContent = state.charAt(0).toUpperCase() + state.slice(1);
@@ -70,7 +72,7 @@ function seekVideoToRandomTime(videoPlayer) {
 	postMessageToVideo(videoPlayer, {
 		event: 'command',
 		func: 'seekTo',
-		args: [randomTime, true] // [time in seconds, allowSeekAhead]// doesnt work owie
+		args: [randomTime, true] // [time in seconds, allowSeekAhead]// doesnt work owie // maybe theyre promises :0
 	})
 	return videoPlayer
 }
@@ -93,20 +95,32 @@ playPauseButton.addEventListener("click", async () => {
 		playPauseButton = setButtonState(playPauseButton, "pause");
 		let preview = document.querySelector("#preview-text");
 		let words = preview.value;
-		console.log(words);
-		chrome.tts.speak(words, {
-			onEvent: function (event) {
-				console.log('Event ' + event.type + ' at position ' + event.charIndex);
-				document.querySelector("#text-overlay").innerText = getWordAtIndex(words, event.charIndex);
-				if (event.type === "end") {
-					playPauseButton = setButtonState(playPauseButton, "play");
-					stopVideoPlayer(videoPlayer);
-				}
-			}
-		}
-		)
+		chrome.tts.speak(words, {onEvent: (event) => {
+			ttsEventHandler(event, words)
+		}})
 	}
 });
+
+function ttsEventHandler(event, words) {
+	console.log('Event ' + event.type + ' at position ' + event.charIndex);
+	document.querySelector("#text-overlay").innerText = getWordAtIndex(words, event.charIndex);
+	switch (event.type) {
+		case "start":
+			previewText.setAttribute("disabled", "disabled");
+			readButton.setAttribute("disabled", "disabled");
+
+			break;
+		case "end":
+		case "interrupted":
+			previewText.removeAttribute("disabled");
+			readButton.removeAttribute("disabled");
+			playPauseButton = setButtonState(playPauseButton, "play");
+			stopVideoPlayer(videoPlayer);
+			break;
+		default:
+			break;
+	}
+}
 
 stopButton.addEventListener("click", () => {
 	chrome.tts.stop();
@@ -132,6 +146,9 @@ function getWordAtIndex(text, index) {
 }
 
 function cleanUpText(text) {
+	if (text.length > 32768) {
+		text = text.slice(0, 32768) // max lenght that tts allows
+	}
 	return text
 		// remove spaces before and after
 		.trim()
