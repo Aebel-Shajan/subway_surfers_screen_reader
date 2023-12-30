@@ -5,11 +5,9 @@ chrome.runtime.onMessage.addListener(
 	function(message, sender, sendResponse) {
 		console.log(message);
 		if (message.action === "read-website") {
-			let parser = new DOMParser();
-			let doc = parser.parseFromString(document.documentElement.outerHTML, "text/html");
-			const scrapedContent = new Readability(doc).parse();
+			const scrapedContent = new Readability(document.cloneNode(true)).parse();
 			console.log(scrapedContent);
-			sendResponse({content: scrapedContent.textContent});
+			sendResponse({content: scrapedContent});
 		}
 	}
 );

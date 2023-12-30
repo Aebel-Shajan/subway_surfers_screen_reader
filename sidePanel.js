@@ -20,7 +20,8 @@ document.querySelector("#read-website").addEventListener('click', async () => {
 	try {
 		const response = await sendMessageToActiveTab({ action: "read-website" });
 		console.log(response);
-		document.querySelector("#preview-text").value = response.content;
+		let scrapedContent = response.content;
+		document.querySelector("#preview-text").value = cleanUpText(scrapedContent.textContent);
 	} catch (error) {
 		document.querySelector("#preview-text").value = ":( no worky, sorry. Try refreshing the current page and press read website again";
 		console.log('An error occurred:', error);
@@ -49,22 +50,34 @@ document.querySelector("#stop-tts").addEventListener("click", () => {
 	chrome.tts.stop();
 })
 
+window.onunload = () => {
+	chrome.tts.stop();
+}
+
 function getWordAtIndex(text, index) {
   let words = text.split(' ');
   let accumulatedLength = 0;
-
   for (let i = 0; i < words.length; i++) {
     accumulatedLength += words[i].length;
-
     // Add 1 for the space character
     if (i !== words.length - 1) {
       accumulatedLength += 1;
     }
-
     if (index < accumulatedLength) {
       return words[i];
     }
   }
-
   return null;
+}
+
+function cleanUpText(text) {
+	return text
+	// remove spaces before and after
+	.trim()
+	// remove spaces between new lines
+	.replace(/ +\n/g, '\n')
+	// condense multiple new lines into two
+	.replace(/\n+/g, '\n\n')
+	// add space to end of sentences
+	.replace(/(?<=[A-Za-z0-9])\.(?=[A-Z])/g, '. ');
 }
