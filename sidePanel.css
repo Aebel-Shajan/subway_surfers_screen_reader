@@ -52,6 +52,7 @@ main {
 	justify-content: space-around;
 	align-items: center;
 	padding: 1rem;
+	background-color: var(--secondary);
 }
 
 #video-container {
@@ -79,4 +80,6 @@ main {
 	color: white;
 	text-align: center;
 	text-shadow: 3px 3px 0px #000;
+	max-width: 80%;
+	overflow-wrap: break-word;
 }
