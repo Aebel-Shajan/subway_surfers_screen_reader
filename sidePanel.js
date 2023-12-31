@@ -7,6 +7,7 @@ const elements = {
 	previewText: document.querySelector("#preview-text"),
 	textOverlay: document.querySelector("#text-overlay"),
 };
+
 async function sendMessageToActiveTab(message) {
 	const [tab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true });
 	const response = await chrome.tabs.sendMessage(tab.id, { ...message, sender: "side-panel" });
@@ -108,6 +109,10 @@ function seekVideoToRandomTime(videoPlayer) {
 }
 
 // Event listeners
+window.onload = () => {
+	chrome.tts.stop();
+	chrome.runtime.connect({ name: 'mySidepanel' });
+}
 elements.playPause.addEventListener("click", async () => {
 	const isSpeaking = await chrome.tts.isSpeaking();
 	if (isSpeaking) {

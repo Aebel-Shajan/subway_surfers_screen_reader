@@ -6,17 +6,21 @@
 	"icons": {
 		"128": "images/genz-screenreader-logo.png"
 	},
+	"permissions": ["sidePanel", "tabs", "tts"],
+	"action": {
+		"default_title": "Click to open panel"
+	},
 	"side_panel": {
 		"default_path": "sidePanel.html"
 	},
-	"permissions": ["sidePanel", "tabs", "tts"],
-	"action": {
-    "default_title": "Click to open panel"
-  },
 	"content_scripts": [
     {
       "matches": ["<all_urls>"],
       "js": ["content-script.bundle.js"]
     }
-  ]
+  ],
+	"background": {
+		"service_worker": "service-worker.js",
+		"type": "module"
+	}
 }
