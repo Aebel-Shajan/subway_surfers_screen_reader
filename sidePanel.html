@@ -1,6 +1,7 @@
 <html>
 
 <head>
+	<meta charset="UTF-8">
 	<title>Gen Z screen reader</title>
 	<link rel="stylesheet" href="sidePanel.css">
 
@@ -13,24 +14,42 @@
 	</header>
 	<main>
 		<div id="preview-text-container">
-			<textarea id="preview-text" >
-			</textarea>
+			<textarea
+			id="preview-text" 
+			placeholder="Instructions:
+1. click read website to read contents of current website
+or
+1. copy and past content header
+2. press play to start tts (disables text area)
+3. press stop to stop tts (enables text area)
+
+Limitations:
+1. im using mozilla's readability.js library, it can't read reddit 😢
+2. chrome tts voice kinda clunky
+3. character limit of 30000
+4. brain rot is likely to occur
+"
+
+			
+			></textarea>
 		</div>
 		<div id="options-container">
-			<button id="read-website">Read Website</button>
-			<button id="play-pause-toggle" class="play">Play</button>
-			<button id="stop">Stop</button>
-			
+			<button id="clear-contents">🗑️</button>
+			<button id="read-website">Get Website</button>
+			<button id="play-pause-toggle" class="play">▶️</button>
+			<button id="stop">⏹️</button>
+
 		</div>
 		<div id="video-container">
-			<iframe 
-				id="video" 
-				src="https://www.youtube.com/embed/BkWT66jE8Hs
-				?mute=1&enablejsapi=1" 
-			></iframe>
+			<iframe id="video" src="https://www.youtube.com/embed/BkWT66jE8Hs
+				?mute=1&enablejsapi=1"></iframe>
 			<!-- <source src="video" type="video/mp4">
 						Your browser does not support the video tag. -->
-			<div id="text-overlay">Your Text Here</div>
+			<div id="text-overlay">
+				<a href="https://www.youtube.com/watch?v=BkWT66jE8Hs" target="_blank">
+					Youtube source
+				</a>
+			</div>
 		</div>
 
 	</main>
