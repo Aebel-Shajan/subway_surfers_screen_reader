@@ -6,3 +6,6 @@ chrome.runtime.onConnect.addListener(function (port) {
     });
   }
 });
+chrome.sidePanel
+  .setPanelBehavior({ openPanelOnActionClick: true })
+  .catch((error) => console.error(error));

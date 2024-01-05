@@ -2,7 +2,7 @@
 	"name": "Gen Z Screen Reader",
   "version": "0.0.1",
   "manifest_version": 3,
-	"description": "Make any piece of content brain rot.",
+	"description": "Make any piece of content into subway surfers.",
 	"icons": {
 		"128": "images/genz-screenreader-logo.png"
 	},
