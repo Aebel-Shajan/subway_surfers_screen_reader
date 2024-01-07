@@ -37,7 +37,6 @@ chrome.runtime.onInstalled.addListener(function () {
 chrome.contextMenus.onClicked.addListener(
 	async (info, tab) => {
 		if (info.menuItemId === "read-website") {
-			console.log("hello");
 			await chrome.sidePanel.open({ windowId: tab.windowId });
 			chrome.scripting.executeScript({
 				target: { tabId: tab.id },
