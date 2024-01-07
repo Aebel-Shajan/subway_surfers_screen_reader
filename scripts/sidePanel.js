@@ -114,7 +114,7 @@ chrome.runtime.onMessage.addListener(
 	async (message, sender, sendResponse) => {
 		stopScreenReader();
 		try {
-			elements.previewText.value = utils.cleanUpText(message.websiteContent.textContent);
+			elements.previewText.value = utils.cleanUpText(message.text);
 		} catch (error) {
 			elements.previewText.value = ":( no worky, sorry. Try refreshing the current page and press read website again";
 		}

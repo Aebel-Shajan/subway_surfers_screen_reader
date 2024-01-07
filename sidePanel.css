@@ -15,7 +15,7 @@ header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	font-size: x-large;
+	font-size: large;
 	height: 5vh;
 	font-family: "Titan One";
 	padding: 0.5rem;
@@ -53,8 +53,16 @@ main {
 	padding: 0.3rem;
 	background-color: var(--secondary);
 }
-#options-container > button {
-	font-size: 0.7rem;
+button {
+	font-size: 1.5rem;
+  display: flex;
+	align-items: center;
+	border-radius: 1rem;
+	background-color: #ffffff66;
+	border: none;
+}
+button:hover {
+	background-color: #bcbcbc66;
 }
 
 #video-container {
