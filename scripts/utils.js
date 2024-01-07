@@ -1,16 +1,19 @@
+
+
 export async function sendMessageToActiveTab(message) {
 	const [tab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true });
 	const response = await chrome.tabs.sendMessage(tab.id, { ...message, sender: "side-panel" });
 	return response
 }
+
 export function setButtonState(button, state) {
 	button.className = state;
 	switch (state) {
 		case "play":
 			button.textContent = "▶️";
 			break
-		case"pause":
-			 button.textContent = "⏸️";
+		case "pause":
+			button.textContent = "⏸️";
 			break
 		default:
 			button.textContent = state.charAt(0).toUpperCase() + state.slice(1);
@@ -19,7 +22,8 @@ export function setButtonState(button, state) {
 	return button
 }
 
-// tts export functions
+
+// tts functions
 export function getWordPosition(str, charPos) {
 	let startPos = 0;
 	// Split the string into words
@@ -39,6 +43,7 @@ export function getWordPosition(str, charPos) {
 	// If no word is found, return null
 	return null;
 }
+
 export function cleanUpText(text) {
 	if (text.length >= 30000) {
 		text = text.slice(0, 30000) // max lenght that tts allows
@@ -59,6 +64,7 @@ export function cleanUpText(text) {
 export function postMessageToVideo(videoPlayer, message) {
 	videoPlayer.contentWindow.postMessage(JSON.stringify(message), "*");
 }
+
 export function pauseVideoPlayer(videoPlayer) {
 	postMessageToVideo(videoPlayer,
 		{
@@ -67,6 +73,7 @@ export function pauseVideoPlayer(videoPlayer) {
 		}
 	);
 }
+
 export function playVideoPlayer(videoPlayer) {
 	postMessageToVideo(videoPlayer,
 		{
@@ -75,6 +82,7 @@ export function playVideoPlayer(videoPlayer) {
 		}
 	);
 }
+
 export function stopVideoPlayer(videoPlayer) {
 	postMessageToVideo(videoPlayer,
 		{
@@ -84,12 +92,9 @@ export function stopVideoPlayer(videoPlayer) {
 		}
 	);
 }
+
 export function seekVideoToRandomTime(videoPlayer) {
-	const randomTime = 0; //MATH.floor(MATH.random() * 60 * 60);
-	postMessageToVideo(videoPlayer, {
-		event: 'command',
-		func: 'seekTo',
-		args: [randomTime, true] // [time in seconds, allowSeekAhead]// doesnt work owie // maybe theyre promises :0
-	})
+	const randomTime = Math.floor(0);
+	videoPlayer.src = videoPlayer.src + "&t=" +  randomTime;
 	return videoPlayer
 }

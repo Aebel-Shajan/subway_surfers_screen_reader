@@ -1,8 +1,8 @@
 {
-	"name": "Gen Z Screen Reader",
+	"name": "Subway Surfers Screen Reader",
   "version": "0.0.1",
   "manifest_version": 3,
-	"description": "Make any piece of content into subway surfers.",
+	"description": "Screen reader with integrated subway surfers gameplay in the background.",
 	"icons": {
 		"128": "images/genz-screenreader-logo.png"
 	},

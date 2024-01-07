@@ -1,16 +1,3 @@
-chrome.runtime.onConnect.addListener(function (port) {
-	if (port.name === 'mySidepanel') {
-		port.onDisconnect.addListener(async () => {
-			chrome.tts.stop();
-			console.log('Sidepanel closed.');
-		});
-	}
-});
-chrome.sidePanel
-	.setPanelBehavior({ openPanelOnActionClick: true })
-	.catch((error) => console.error(error));
-
-
 // Open sidepanel on action icon click
 chrome.sidePanel
 	.setPanelBehavior({ openPanelOnActionClick: true })
@@ -38,10 +25,12 @@ chrome.contextMenus.onClicked.addListener(
 	async (info, tab) => {
 		if (info.menuItemId === "read-website") {
 			await chrome.sidePanel.open({ windowId: tab.windowId });
-			chrome.scripting.executeScript({
-				target: { tabId: tab.id },
-				files: ["parseWebsite.bundle.js"]
-			});
+			setTimeout(() => {
+				chrome.scripting.executeScript({
+					target: { tabId: tab.id },
+					files: ["scripts/parseWebsite.bundle.js"]
+				});
+			}, 1000);
 		}
 	}
 )

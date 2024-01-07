@@ -1,4 +1,4 @@
-import * as utils from "./scripts/utils.js"
+import * as utils from "./utils.js"
 
 // DOM Element Selectors
 const elements = {
@@ -50,15 +50,14 @@ function ttsEventHandler(event, words) {
 }
 
 function startScreenReader() {
-	chrome.tts.stop();
-	elements.videoPlayer = utils.seekVideoToRandomTime(elements.videoPlayer);
 	elements.playPause = utils.setButtonState(elements.playPause, "pause");
 	let words = elements.previewText.value;
 	chrome.tts.speak(words, {
 		onEvent: (event) => {
 			ttsEventHandler(event, words)
 		}
-	})
+	});
+	utils.playVideoPlayer(elements.videoPlayer);
 }
 
 function resumeScreenReader() {
@@ -82,7 +81,10 @@ function stopScreenReader() {
 
 // Event listeners
 window.onload = () => {
-	chrome.runtime.connect({ name: 'mySidepanel' });
+	const port = chrome.runtime.connect({ name: 'mySidepanel' });
+	setInterval(()=> {
+		port.postMessage({info: "keeping connection open"});
+	}, 5000)
 }
 
 elements.clearContents.addEventListener("click", () => {
@@ -112,7 +114,7 @@ chrome.runtime.onMessage.addListener(
 	async (message, sender, sendResponse) => {
 		stopScreenReader();
 		try {
-			elements.previewText.value = utils.cleanUpText(message.scrapedContent.textContent);
+			elements.previewText.value = utils.cleanUpText(message.websiteContent.textContent);
 		} catch (error) {
 			elements.previewText.value = ":( no worky, sorry. Try refreshing the current page and press read website again";
 		}
