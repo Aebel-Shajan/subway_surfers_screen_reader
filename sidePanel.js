@@ -1,7 +1,6 @@
 // DOM Element Selectors
 const elements = {
 	clearContents: document.querySelector("#clear-contents"),
-	readWebsite: document.querySelector("#read-website"),
 	playPause: document.querySelector("#play-pause-toggle"),
 	stop: document.querySelector("#stop"),
 	videoPlayer: document.querySelector("#video"),
@@ -65,11 +64,10 @@ function cleanUpText(text) {
 		.replace(/(?<=[A-Za-z0-9])\.(?=[A-Z])/g, '. ');
 }
 function ttsEventHandler(event, words) {
-	console.log(`Event ${event.type} at position ${event.charIndex}`);
+	// console.log(`Event ${event.type} at position ${event.charIndex}`);
 	switch (event.type) {
 		case "start":
 			elements.previewText.setAttribute("disabled", "disabled");
-			elements.readWebsite.setAttribute("disabled", "disabled");
 			elements.clearContents.setAttribute("disabled", "disabled");
 			break;
 		case "word":
@@ -88,14 +86,12 @@ function ttsEventHandler(event, words) {
 				elements.previewText.focus();
 				// Disable the textarea again
 				elements.previewText.setAttribute("disabled", "disabled");
-				console.log(`focus: ${startPos} ${endPos}`)
 			}
 			break;
 		case "end":
 		case "interrupted":
 		case "error":
 			elements.previewText.removeAttribute("disabled");
-			elements.readWebsite.removeAttribute("disabled");
 			elements.clearContents.removeAttribute("disabled");
 			elements.playPause = setButtonState(elements.playPause, "play");
 			elements.textOverlay.innerHTML = '<a href="https://www.youtube.com/watch?v=BkWT66jE8Hs" target="_blank">Youtube source</a>';
@@ -184,15 +180,15 @@ elements.stop.addEventListener("click", () => {
 	stopVideoPlayer(elements.videoPlayer);
 })
 
-elements.readWebsite.addEventListener('click', async () => {
+
+chrome.runtime.onMessage.addListener(
+	(message, sender, sendResponse) => {
+	chrome.tts.stop();
+	elements.playPause = setButtonState(elements.playPause, "play");
+	stopVideoPlayer(elements.videoPlayer);
 	try {
-		const response = await sendMessageToActiveTab({ action: "read-website" });
-		console.log("Response message: ", response);
-		const scrapedContent = response.content;
-		elements.previewText.value = cleanUpText(scrapedContent.textContent);
+		elements.previewText.value = cleanUpText(message.scrapedContent.textContent);
 	} catch (error) {
 		elements.previewText.value = ":( no worky, sorry. Try refreshing the current page and press read website again";
-		console.log('An error occurred:', error);
 	}
-
 })
