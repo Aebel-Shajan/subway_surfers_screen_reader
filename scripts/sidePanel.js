@@ -1,4 +1,5 @@
 import * as utils from "./utils.js"
+import addLogicToResizer from "./resizer.js"
 
 // DOM Element Selectors
 const elements = {
@@ -8,6 +9,7 @@ const elements = {
 	videoPlayer: document.querySelector("#video"),
 	previewText: document.querySelector("#preview-text"),
 	textOverlay: document.querySelector("#text-overlay"),
+	resizer: document.querySelector(".resizer")
 };
 
 function ttsEventHandler(event, words) {
@@ -121,3 +123,5 @@ chrome.runtime.onMessage.addListener(
 		startScreenReader();
 	}
 )
+
+addLogicToResizer(elements.resizer);

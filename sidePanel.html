@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Gen Z screen reader</title>
 	<link rel="stylesheet" href="sidePanel.css">
-
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
 <body>
@@ -13,7 +13,8 @@
 		Subway Surfers Screen Reader
 	</header>
 	<main>
-		<div id="preview-text-container">
+		<div id="top-panel" class="panel">		
+		<div id="preview-text-container" >
 			<textarea
 			id="preview-text" 
 			placeholder="Instructions:
@@ -22,6 +23,7 @@ or
 1. select text > right click > click 'Read selection'
 or
 1. copy and past content here
+then
 2. press play to start tts (disables text area)
 3. press stop to stop tts (enables text area)
 
@@ -38,13 +40,19 @@ Limitations:
 "
 			></textarea>
 		</div>
-		<div id="options-container">
+		<div id="options-container" class="panel">
 			<button id="clear-contents">🗑️</button>
 			<button id="play-pause-toggle" class="play">▶️</button>
 			<button id="stop">⏹️</button>
 
 		</div>
-		<div id="video-container">
+		</div>
+		<div class="resizer" draggable="false">
+			<span class="material-symbols-outlined">
+				drag_handle
+			</span>
+		</div>
+		<div id="video-container" class="panel">
 			<iframe id="video" src="https://www.youtube.com/embed/BkWT66jE8Hs
 				?mute=1&enablejsapi=1"></iframe>
 			<!-- <source src="video" type="video/mp4">

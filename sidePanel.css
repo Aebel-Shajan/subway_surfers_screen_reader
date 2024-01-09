@@ -27,9 +27,15 @@ header {
 main {
 	height: 95vh;
 	display: grid;
-	grid-template-rows: 4fr 1fr 10fr;
+	grid-template-rows: 5fr auto 10fr;
+	overflow: hidden;
 }
 
+#top-panel {
+	height: 100%;
+	display: grid;
+	grid-template-rows: 4fr auto;
+}
 #preview-text-container {
 	width: 100%;
 	overflow: hidden;
@@ -68,6 +74,7 @@ button:hover {
 #video-container {
 	position: relative;
 	width: 100%;
+	overflow: hidden;
 }
 #video {
 	width: 100%;
@@ -97,4 +104,20 @@ a {
 	text-decoration: none;
 	color: white;
 	font-family: inherit;
+}
+
+.resizer {
+	height: 1.2rem;
+	width: 100%;
+	background-color: var(--secondary);
+	color: var(--primary);
+	cursor: s-resize;
+	font-size: 1rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid var(--primary);
+	border-left: none;
+	border-right: none;
+	user-select: none;
 }

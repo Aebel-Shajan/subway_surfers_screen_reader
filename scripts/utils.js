@@ -98,3 +98,10 @@ export function seekVideoToRandomTime(videoPlayer) {
 	videoPlayer.src = videoPlayer.src + "&t=" +  randomTime;
 	return videoPlayer
 }
+
+export function getBorderWidth(element) {
+	return parseFloat(getComputedStyle(element).borderWidth.slice(0, -2));
+}
+export function resizeDiv(div, amountInPx) {
+	div.style.height = `${amountInPx}px`;
+}
