@@ -1,12 +1,12 @@
 {
 	"name": "Subway Surfers Screen Reader",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "manifest_version": 3,
 	"description": "Screen reader with integrated subway surfers gameplay in the background.",
 	"icons": {
 		"128": "images/genz-screenreader-logo.png"
 	},
-	"permissions": ["sidePanel", "tabs", "tts", "scripting", "contextMenus", "activeTab"],
+	"permissions": ["sidePanel", "tts", "scripting", "contextMenus", "activeTab"],
 	"action": {
 		"default_title": "Click to open panel"
 	},

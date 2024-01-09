@@ -1,11 +1,4 @@
 
-
-export async function sendMessageToActiveTab(message) {
-	const [tab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true });
-	const response = await chrome.tabs.sendMessage(tab.id, { ...message, sender: "side-panel" });
-	return response
-}
-
 export function setButtonState(button, state) {
 	button.className = state;
 	switch (state) {
