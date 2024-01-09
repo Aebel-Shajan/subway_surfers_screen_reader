@@ -121,3 +121,19 @@ a {
 	border-right: none;
 	user-select: none;
 }
+
+/* https://stackoverflow.com/questions/25253391/javascript-loading-screen-while-page-loads */
+#loading {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  background-image: url("https://media.tenor.com/dZr67lNIXf8AAAAi/fish-animal.gif");
+	background-size: 300px;
+  background-repeat: no-repeat;
+  background-position: center;
+}

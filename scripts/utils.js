@@ -105,3 +105,6 @@ export function getBorderWidth(element) {
 export function resizeDiv(div, amountInPx) {
 	div.style.height = `${amountInPx}px`;
 }
+export function setVisible(selector, visible) {
+  document.querySelector(selector).style.display = visible ? 'block' : 'none';
+}

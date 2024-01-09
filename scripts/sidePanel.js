@@ -82,10 +82,11 @@ function stopScreenReader() {
 
 
 // Event listeners
+utils.setVisible('#loading', false);
 window.onload = () => {
 	const port = chrome.runtime.connect({ name: 'mySidepanel' });
-	setInterval(()=> {
-		port.postMessage({info: "keeping connection open"});
+	setInterval(() => {
+		port.postMessage({ info: "keeping connection open" });
 	}, 5000)
 }
 
@@ -113,15 +114,21 @@ elements.stop.addEventListener("click",
 )
 
 chrome.runtime.onMessage.addListener(
-	async (message, sender, sendResponse) => {
+	(message, sender, sendResponse) => {
 		stopScreenReader();
-		try {
-			elements.previewText.value = utils.cleanUpText(message.text);
-		} catch (error) {
-			elements.previewText.value = ":( no worky, sorry. Try refreshing the current page and press read website again";
-		}
-		startScreenReader();
+		utils.setVisible('#loading', true);
+		setTimeout(() => {
+			utils.setVisible('#loading', false);
+			try {
+				elements.previewText.value = utils.cleanUpText(message.text);
+			} catch (error) {
+				elements.previewText.value = ":( no worky, sorry. Try refreshing the current page and press read website again";
+			}
+			startScreenReader();
+		}, 800);
 	}
 )
+
+
 
 addLogicToResizer(elements.resizer);
