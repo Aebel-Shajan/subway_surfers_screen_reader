@@ -87,7 +87,7 @@ window.onload = () => {
 	const port = chrome.runtime.connect({ name: 'mySidepanel' });
 	setInterval(() => {
 		port.postMessage({ info: "keeping connection open" });
-	}, 5000)
+	}, 1000)
 }
 
 elements.clearContents.addEventListener("click", () => {
@@ -128,7 +128,5 @@ chrome.runtime.onMessage.addListener(
 		}, 800);
 	}
 )
-
-
 
 addLogicToResizer(elements.resizer);
