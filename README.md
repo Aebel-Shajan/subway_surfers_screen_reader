@@ -2,7 +2,16 @@
 
 Browsing the web is boring, I would much rather go on tiktok or yt shorts. This extension turns everything into easy to watch subway surfer gameplay.
 
- [Chrome Web Store Page](https://chromewebstore.google.com/detail/subway-surfers-screen-rea/jcijfneifjnhbgahlokgkmpcnocgpegd)
+Click the image below to install the extension!
+
+ [![](https://github.com/Aebel-Shajan/subway_surfers_screen_reader/blob/main/thumbnail.png)](https://chromewebstore.google.com/detail/subway-surfers-screen-rea/jcijfneifjnhbgahlokgkmpcnocgpegd)
+
+## Youtube demo
+Click below to open the youtube demo:
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/JuJiM2TYbiw/0.jpg)](https://www.youtube.com/watch?v=JuJiM2TYbiw)
+
+
 
 ## Installation
 
