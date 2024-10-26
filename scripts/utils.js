@@ -86,9 +86,14 @@ export function stopVideoPlayer(videoPlayer) {
 	);
 }
 
-export function seekVideoToRandomTime(videoPlayer) {
-	const randomTime = Math.floor(0);
-	videoPlayer.src = videoPlayer.src + "&t=" +  randomTime;
+export function randomizeYouTubeStartTime(videoPlayer, minTime = 0, maxTime = 3600) {
+    // Parse the original URL
+    const url = new URL(videoPlayer.src);
+    // Generate random start time within specified range
+    const randomStart = Math.floor(Math.random() * (maxTime - minTime)) + minTime;
+    // Set new start parameter
+    url.searchParams.set('start', randomStart);
+    videoPlayer.src = url.toString();
 	return videoPlayer
 }
 

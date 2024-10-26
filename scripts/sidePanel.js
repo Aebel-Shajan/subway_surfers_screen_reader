@@ -59,7 +59,8 @@ function startScreenReader() {
 			ttsEventHandler(event, words)
 		}
 	});
-	utils.playVideoPlayer(elements.videoPlayer);
+	utils.randomizeYouTubeStartTime(elements.videoPlayer, 100, 4300)
+	setTimeout(() => utils.playVideoPlayer(elements.videoPlayer), 300);
 }
 
 function resumeScreenReader() {
