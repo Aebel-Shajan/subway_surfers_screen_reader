@@ -20,7 +20,7 @@ Click below to open the youtube demo:
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/your-username/subway-surfers-screen-reader.git
+    git clone https://github.com/Aebel-Shajan/subway_surfers_screen_reader.git
     ```
 
 2. Open Google Chrome and go to `chrome://extensions`.
