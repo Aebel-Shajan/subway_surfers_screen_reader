@@ -88,7 +88,7 @@ const SidePanel = () => {
    * @remark The reason for the wait is because the vid takes some time to load up.
    * 
    * 
-   * @returns {Promise<void>} A promise that resolves when the play/pause actions are completed.
+   * @returns A promise that resolves when the play/pause actions are completed.
    */
   async function handlePlayPause() {
     if (!youtubeRef.current) return 
