@@ -33,7 +33,6 @@ chrome.runtime.onInstalled.addListener(function () {
 		id: "read-selection",
 		contexts: ["selection"]
 	});
-	
 })
 // 
 chrome.contextMenus.onClicked.addListener(
