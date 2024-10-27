@@ -2,7 +2,7 @@ import styles from "./SidePanel.module.css"
 import logo from "@/assets/genz-screenreader-logo.png"
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels"
 import { MdDragHandle } from "react-icons/md";
-import { FaPause, FaPlay, FaStop } from "react-icons/fa6";
+import { FaPause, FaPlay, FaStop, FaTrash } from "react-icons/fa6";
 import { useRef, useState } from "react";
 import { delay, getWordAtIndex } from "@/utils/utils";
 import Youtube from "./Youtube/Youtube";
@@ -64,6 +64,12 @@ const SidePanel = () => {
     }
   }
 
+  /**
+   * Reset input text when trash button pressed.
+   */
+  function handleClearText() {
+    setInputText("")
+  }
 
   /**
    * Stops the text-to-speech (TTS) engine.
@@ -128,6 +134,13 @@ const SidePanel = () => {
         </div>
 
         <div className={styles.buttonContainer} >
+          <button
+            id="clear-text"
+            onClick={handleClearText}
+            disabled={isPlaying || hasStarted}
+          >
+            <FaTrash />
+          </button>
           <button 
             id="play-pause" 
             onClick={handlePlayPause}
@@ -136,7 +149,7 @@ const SidePanel = () => {
           </button>
           <button 
             id="stop" 
-            disabled={!isPlaying || !hasStarted}
+            disabled={!hasStarted}
             onClick={handleStop}
           >
             <FaStop />

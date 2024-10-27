@@ -13,7 +13,7 @@
 
     header {
         font-family: "Titan One", sans-serif;
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         background-color: var(--secondary);
         color: white;
         -webkit-text-stroke:  1px black;
@@ -85,6 +85,10 @@
 
     button:active {
         color: black;
+    }
+
+    button:disabled, button[disabled] {
+        background-color: grey;
     }
 }
 
