@@ -2,6 +2,7 @@ import styles from "./SidePanel.module.css"
 import logo from "@/assets/genz-screenreader-logo.png"
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels"
 import { MdDragHandle } from "react-icons/md";
+import { FaCircleStop, FaPause, FaPlay, FaStop } from "react-icons/fa6";
 import { useRef, useState } from "react";
 import { delay, getWordAtIndex } from "@/utils/utils";
 import Youtube from "./Youtube/Youtube";
@@ -126,19 +127,20 @@ const SidePanel = () => {
           />
         </div>
 
-        <div id="options-container" >
-          <button id="play-pause" 
+        <div className={styles.buttonContainer} >
+          <button 
+            id="play-pause" 
             onClick={handlePlayPause}
           >
-            {isPlaying ? "⏸️": "▶️" }
+            {isPlaying ? <FaPause />: <FaPlay /> }
           </button>
           <button 
             id="stop" 
             disabled={!isPlaying || !hasStarted}
             onClick={handleStop}
           >
-            ⏹️
-            </button>
+            <FaStop />
+          </button>
         </div>
 
       </Panel>
