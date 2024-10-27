@@ -2,7 +2,7 @@ import styles from "./SidePanel.module.css"
 import logo from "@/assets/genz-screenreader-logo.png"
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels"
 import { MdDragHandle } from "react-icons/md";
-import { FaCircleStop, FaPause, FaPlay, FaStop } from "react-icons/fa6";
+import { FaPause, FaPlay, FaStop } from "react-icons/fa6";
 import { useRef, useState } from "react";
 import { delay, getWordAtIndex } from "@/utils/utils";
 import Youtube from "./Youtube/Youtube";
@@ -149,7 +149,6 @@ const SidePanel = () => {
       </PanelResizeHandle>
       <Panel>
         <div className={styles.lowerPanel}>
-
         <Youtube videoId="BkWT66jE8Hs" ref={youtubeRef} />
         <div className={styles.overlay}>
           {isPlaying ? <p>{currentWord}</p> : null}
