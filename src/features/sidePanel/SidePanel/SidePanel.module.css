@@ -6,25 +6,52 @@
     min-height: 100vh;
 }
 
-.header {
-    font-family: "Titan One", sans-serif;
-    background-color: var(--secondary);
-    color: var(--primary);
-    border-bottom: solid 1px var(--primary);
-    width: 100%;
-    height: 3rem;
-    padding: 0.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+.upperPanel {
+    background-color: var(--third);
 
-
-    img {
-        object-fit: contain;
-        height: 100%;
+    header {
+        font-family: "Titan One", sans-serif;
+        background-color: var(--secondary);
+        color: var(--primary);
+        border-bottom: solid 1px var(--primary);
+        width: 100%;
+        height: 3rem;
+        padding: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    
+        img {
+            object-fit: contain;
+            height: 100%;
+        }
     }
+
+
 }
 
-.footer {
+.resizeHandle {
+    height: 1rem;
+    background-color: var(--secondary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: solid 1px var(--primary);
+    border-bottom: solid 1px var(--primary);
+}
+
+
+.lowerPanel {
+
+}
+
+.youtube {
+    width: 100%;
+    height: 100%;
+
+    iframe {
+        width: 100%;
+        height: 100%;
     
+    }
 }
