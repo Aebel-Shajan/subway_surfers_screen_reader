@@ -7,7 +7,7 @@
     "build": "npm run build-background && npm run build-side-panel",
     "build-background": "tsc -b && vite build --config .config/background.config.ts",
     "build-side-panel": "tsc -b && vite build --config .config/sidePanel.config.ts",
-    "dev-side-sidepanel": "vite --config .config/sidePanel.config.ts",
+    "dev-side-panel": "vite --config .config/sidePanel.config.ts",
     "lint": "eslint ."
   },
   "dependencies": {

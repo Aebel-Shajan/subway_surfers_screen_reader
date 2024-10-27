@@ -7,64 +7,6 @@
 </head>
 
 <body>
-	<header>
-		<image class="logo-image" src="assets/genz-screenreader-logo.png"></image>
-		Subway Surfers Screen Reader
-	</header>
-	<main>
-		<div id="top-panel" class="panel">		
-		<div id="preview-text-container" >
-			<textarea
-			id="preview-text" 
-			placeholder="Instructions:
-1. right click > click 'Read website'
-or
-1. select text > right click > click 'Read selection'
-or
-1. copy and past content here
-then
-2. press play to start tts (disables text area)
-3. press stop to stop tts (enables text area)
-
-
-
-
-
-
-Limitations:
-1. im using mozilla's readability.js library, it has trouble with reddit 😢
-2. chrome tts voice kinda clunky
-3. character limit of 30000
-4. brain rot is likely to occur
-"
-			></textarea>
-		</div>
-		<div id="options-container" class="panel">
-			<button id="clear-contents">🗑️</button>
-			<button id="play-pause-toggle" class="play">▶️</button>
-			<button id="stop">⏹️</button>
-
-		</div>
-		</div>
-		<div class="resizer" draggable="false">
-			<span class="material-symbols-outlined">
-				drag_handle
-			</span>
-		</div>
-		<div id="video-container" class="panel">
-			<iframe id="video" src="https://www.youtube.com/embed/BkWT66jE8Hs
-				?mute=1&enablejsapi=1"></iframe>
-			<!-- <source src="video" type="video/mp4">
-						Your browser does not support the video tag. -->
-			<div id="text-overlay">
-				<a href="https://www.youtube.com/watch?v=BkWT66jE8Hs" target="_blank">
-					Youtube source
-				</a>
-			</div>
-		</div>
-		<div id="loading"></div>
-		<div id></div>
-	</main>
 	<div id="root"></div>
     <script type="module" src="/src/features/sidePanel/index.tsx"></script>
 </body>
