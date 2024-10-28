@@ -6,6 +6,20 @@
     min-height: 100vh;
 }
 
+.loader {
+    position: absolute;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    background-image: url("https://media.tenor.com/dZr67lNIXf8AAAAi/fish-animal.gif");
+    background-size: 300px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 .upperPanel {
     background-color: var(--third);
     display: grid;

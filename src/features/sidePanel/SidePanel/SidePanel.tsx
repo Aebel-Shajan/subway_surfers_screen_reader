@@ -12,6 +12,7 @@ import { pauseVideoPlayer, playVideoPlayer, seekVideoToRandomTime, stopVideoPlay
 
 const SidePanel = () => {
   // States
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const [inputText, setInputText] = useState<string>("")
   const [isPlaying, setIsPlaying] = useState<boolean>(false)
   const [hasStarted, setHasStarted] = useState<boolean>(false)
@@ -151,25 +152,25 @@ const SidePanel = () => {
       console.log("sidepanel port closed - from sidepanel")
     })
 
-    // On message from background (selection text)
-    port.onMessage.addListener(async (message) => {
+    interface message {
+      text: string
+    }
+    async function loadScreenReader(message: message) {
       stopScreenReader()
       if (!message.text) return
+      setIsLoading(true)
       await delay(800) // The loading is artificial 🤭.
       const textToRead = cleanUpText(message.text)
       setInputText(textToRead)
       startScreenReader(textToRead)
-    })
+      setIsLoading(false)
+    }
+
+    // On message from background (selection text)
+    port.onMessage.addListener(loadScreenReader)
 
     // on message from script being executed in activeTab
-    chrome.runtime.onMessage.addListener(async (message) => {
-      stopScreenReader()
-      if (!message.text) return
-      await delay(800) // The loading is artificial 🤭.
-      const textToRead = cleanUpText(message.text)
-      setInputText(textToRead)
-      startScreenReader(textToRead)
-    })
+    chrome.runtime.onMessage.addListener(loadScreenReader)
 
     return () => {
       clearInterval(intervalId);
@@ -177,8 +178,11 @@ const SidePanel = () => {
     }
   }, [])
 
+
+
   return (
     <PanelGroup className={styles.container} direction="vertical">
+      {isLoading? <div className={styles.loader}></div>: null}
       <Panel maxSize={75} className={styles.upperPanel}>
         <header>
           <img src={logo} />
