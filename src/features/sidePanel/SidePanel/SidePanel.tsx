@@ -2,12 +2,11 @@ import styles from "./SidePanel.module.css"
 import logo from "@/assets/genz-screenreader-logo.png"
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels"
 import { MdDragHandle } from "react-icons/md";
-import { FaPause, FaPlay, FaStop, FaTrash } from "react-icons/fa6";
+import { FaBug, FaPause, FaPlay, FaStop, FaTrash } from "react-icons/fa6";
 import { useEffect, useRef, useState } from "react";
 import { cleanUpText, delay } from "@/utils/utils";
 import Youtube from "./Youtube/Youtube";
 import { pauseVideoPlayer, playVideoPlayer, seekVideoToRandomTime, stopVideoPlayer } from "@/utils/youtubeHelpers";
-
 
 const placeholderText = "\
 Either: \n\
@@ -245,6 +244,11 @@ const SidePanel = () => {
           >
             <FaStop />
           </button>
+          <button 
+            onClick={() => window.open('https://github.com/Aebel-Shajan/subway_surfers_screen_reader/issues')}>
+              <FaBug />
+            </button>
+
         </div>
 
       </Panel>
