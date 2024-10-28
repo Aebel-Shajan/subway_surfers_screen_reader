@@ -147,6 +147,7 @@ const SidePanel = () => {
     }, 1000);
     console.log("sidepanel port opened - from sidepanel")
     port.onDisconnect.addListener(() => {
+      clearInterval(intervalId)
       console.log("sidepanel port closed - from sidepanel")
     })
 
