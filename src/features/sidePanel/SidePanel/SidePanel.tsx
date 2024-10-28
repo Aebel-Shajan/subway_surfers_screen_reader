@@ -247,7 +247,7 @@ const SidePanel = () => {
       <PanelResizeHandle className={styles.resizeHandle}>
         <MdDragHandle />
       </PanelResizeHandle>
-      <Panel>
+      <Panel defaultSize={70}>
         <div className={styles.lowerPanel}>
         <Youtube videoId="BkWT66jE8Hs" ref={youtubeRef} />
         <div className={styles.overlay}>
