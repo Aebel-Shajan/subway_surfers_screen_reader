@@ -1,5 +1,7 @@
-let runOnConnect = () => {}; // hack bleh
-let sidePanelOpen = false;
+
+
+let sidePanelPort: chrome.runtime.Port|null = null;
+let onSidePanelConnect = () => {};
 
 // Open sidepanel on action icon click
 chrome.sidePanel
@@ -7,16 +9,15 @@ chrome.sidePanel
 	.catch((error) => console.error(error));
 
 // Stop tts when sidepanel is closed
-chrome.runtime.onConnect.addListener(function (port) {
+chrome.runtime.onConnect.addListener(function (port: chrome.runtime.Port) {
 	if (port.name === 'mySidepanel') {
-		sidePanelOpen = true;
-		runOnConnect();
-		runOnConnect = () => {};
+		sidePanelPort = port
+		onSidePanelConnect()
+		onSidePanelConnect = () => {}
 		port.onDisconnect.addListener(async () => {
-			sidePanelOpen = false;
+			sidePanelPort = null
+			onSidePanelConnect = () => {}
 			chrome.tts.stop();
-			runOnConnect = () => {};
-			console.log('Sidepanel closed.');
 		});
 	}
 });
@@ -33,26 +34,34 @@ chrome.runtime.onInstalled.addListener(function () {
 		id: "read-selection",
 		contexts: ["selection"]
 	});
-	
 })
 // 
 chrome.contextMenus.onClicked.addListener(
 	async (info, tab) => {
+		if (!tab) return
+		if (!tab.id) return
 		switch(info.menuItemId) {
 			case "read-website":
 				await chrome.sidePanel.open({ windowId: tab.windowId });
-				if (sidePanelOpen) {
+				if (sidePanelPort) {
 					readWebsite(tab.id);
 				} else {
-					runOnConnect = () => readWebsite(tab.id);
+					const tabId = tab.id;
+					onSidePanelConnect = () => {
+						readWebsite(tabId);
+					}
 				}
 				break;
 			case "read-selection":
+				if (!info.selectionText) return;
 				await chrome.sidePanel.open({ windowId: tab.windowId });
-				if (sidePanelOpen) {
-					readSelection(info.selectionText);
+				if (sidePanelPort) {
+					readSelection(info.selectionText, sidePanelPort);
 				} else {
-					runOnConnect = () => readSelection(info.selectionText);
+					onSidePanelConnect = () => {
+						if (!sidePanelPort) return
+						readSelection(info.selectionText? info.selectionText : "", sidePanelPort)
+					};
 				}
 				break;
 			default:
@@ -61,13 +70,13 @@ chrome.contextMenus.onClicked.addListener(
 	}
 )
 
-function readSelection(selection) {
-	chrome.runtime.sendMessage({text: selection});
+function readSelection(selection: string, sidePanelPort: chrome.runtime.Port) {
+	sidePanelPort.postMessage({text: selection})
 }
 
-function readWebsite(tabId) {
+function readWebsite(tabId: number) {
 	chrome.scripting.executeScript({
 		target: { tabId: tabId },
-		files: ["scripts/parseWebsite.bundle.js"]
-	});
+		files: ["background/parseWebsite.js"]
+	})
 }

@@ -1,5 +1,5 @@
 {
-	"name": "Subway Surfers Screen Reader",
+  "name": "Subway Surfers Screen Reader",
   "version": "0.0.2",
   "manifest_version": 3,
 	"description": "Screen reader with integrated subway surfers gameplay in the background.",
