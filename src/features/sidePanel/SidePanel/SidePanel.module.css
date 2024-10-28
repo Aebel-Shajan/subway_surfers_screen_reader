@@ -52,7 +52,8 @@
     height: 100%;
     min-height: 0%;
     
-    textarea {
+    textarea, div {
+        font-family: "Poppins";
         padding: 1rem;
         width: 100%;
         height: 100%;
@@ -62,6 +63,17 @@
         overflow-wrap: break-word;
         resize: none;
         border: none;
+        white-space: pre;
+        white-space: pre-wrap;
+    }
+
+    div {
+        background-color: rgb(210, 210, 210);
+        scroll-behavior: smooth;
+
+        & > span {
+            background-color: aqua;
+        }
     }
 
     textarea:focus-visible {

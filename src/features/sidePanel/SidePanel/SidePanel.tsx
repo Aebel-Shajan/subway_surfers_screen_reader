@@ -17,9 +17,11 @@ const SidePanel = () => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false)
   const [hasStarted, setHasStarted] = useState<boolean>(false)
   const [currentWord, setCurrentWord] = useState<string>("")
+  const [highlightPos, setHiglightPos] = useState<[number, number]|null>(null)
 
   // Refs
   const youtubeRef = useRef<HTMLIFrameElement|null>(null)
+  const highlightRef = useRef<HTMLSpanElement|null>(null)
 
   // Functions
   /**
@@ -47,6 +49,10 @@ const SidePanel = () => {
       case "word":
         if (event.charIndex===undefined|| event.length===undefined) break
         setCurrentWord(textBeingRead.slice(event.charIndex, event.charIndex + event.length))
+        setHiglightPos([event.charIndex, event.charIndex + event.length])
+        if (highlightRef.current) {
+          highlightRef.current.scrollIntoView()
+        }
         break
       case "end":
       case "interrupted":
@@ -58,6 +64,7 @@ const SidePanel = () => {
         if (youtubeRef.current) {
           stopVideoPlayer(youtubeRef.current)
         }
+        setHiglightPos(null)
         break;
       case "pause":
         setIsPlaying(false)
@@ -189,13 +196,28 @@ const SidePanel = () => {
           <span>Subway surfers sidepanel</span>
         </header>
         <div className={styles.textareaContainer}>
-          <textarea
+          {!hasStarted ? 
+            <textarea
             disabled={hasStarted}
             placeholder="Type your text to read aloud here."
             value={inputText}
             onChange={(event) => setInputText(event.target.value)}
             style={hasStarted? {backgroundColor:"#C0C0C0"} : {}}
-          />
+            />
+            :
+            <div style={isPlaying ? {pointerEvents: "none"}: {}}>
+              {highlightPos ? 
+              <>
+                {inputText.slice(0, highlightPos[0])}
+                <span ref={highlightRef}>
+                  {inputText.slice(highlightPos[0], highlightPos[1])}
+                </span>
+                {inputText.slice(highlightPos[1], inputText.length)}
+              </>
+               : inputText}
+            </div>
+          }
+          
         </div>
 
         <div className={styles.buttonContainer} >
