@@ -188,12 +188,12 @@ const SidePanel = () => {
 
 
   return (
-    <PanelGroup className={styles.container} direction="vertical">
+    <PanelGroup className={styles.container} direction="vertical" autoSaveId="persistence">
       {isLoading? <div className={styles.loader}></div>: null}
       <Panel maxSize={75} className={styles.upperPanel}>
         <header>
           <img src={logo} />
-          <span>Subway surfers sidepanel</span>
+          <span>Subway Surfers Screen Reader</span>
         </header>
         <div className={styles.textareaContainer}>
           {!hasStarted ? 
@@ -202,7 +202,6 @@ const SidePanel = () => {
             placeholder="Type your text to read aloud here."
             value={inputText}
             onChange={(event) => setInputText(event.target.value)}
-            style={hasStarted? {backgroundColor:"#C0C0C0"} : {}}
             />
             :
             <div style={isPlaying ? {pointerEvents: "none"}: {}}>

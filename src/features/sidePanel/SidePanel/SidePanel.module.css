@@ -27,7 +27,7 @@
 
     header {
         font-family: "Titan One", sans-serif;
-        font-size: 1.3rem;
+        font-size: 1.05rem;
         background-color: var(--secondary);
         color: white;
         -webkit-text-stroke:  1px black;
@@ -68,11 +68,14 @@
     }
 
     div {
-        background-color: rgb(210, 210, 210);
+        background-color: #202020;
+        color: #E9E9E9;
         scroll-behavior: smooth;
 
         & > span {
-            background-color: aqua;
+            background-color: var(--secondary);
+            color: #202020;
+            font-weight: bold;
         }
     }
 
@@ -157,5 +160,7 @@
         -webkit-text-stroke-color: black;
         -webkit-text-stroke-width: 1px;
         border-radius: 1rem;
+        text-wrap: wrap;
+        word-break: break-all;
     }
 }
