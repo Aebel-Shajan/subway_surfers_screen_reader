@@ -9,7 +9,7 @@ export default mergeConfig(
     outDir: "build/sidePanel/",
     rollupOptions: {
         input: {
-            content: "sidePanel.html"
+            sidePanel: "sidePanel.html"
         }
     }
   }
