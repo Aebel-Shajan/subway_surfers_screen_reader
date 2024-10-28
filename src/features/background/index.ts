@@ -11,12 +11,10 @@ chrome.sidePanel
 // Stop tts when sidepanel is closed
 chrome.runtime.onConnect.addListener(function (port: chrome.runtime.Port) {
 	if (port.name === 'mySidepanel') {
-		console.log("sidepanel port open!")
 		sidePanelPort = port
 		onSidePanelConnect()
 		onSidePanelConnect = () => {}
 		port.onDisconnect.addListener(async () => {
-			console.log('Sidepanel port closed!.');
 			sidePanelPort = null
 			onSidePanelConnect = () => {}
 			chrome.tts.stop();
@@ -42,7 +40,6 @@ chrome.contextMenus.onClicked.addListener(
 	async (info, tab) => {
 		if (!tab) return
 		if (!tab.id) return
-		console.log("checks passed")
 		switch(info.menuItemId) {
 			case "read-website":
 				await chrome.sidePanel.open({ windowId: tab.windowId });
@@ -57,7 +54,6 @@ chrome.contextMenus.onClicked.addListener(
 				break;
 			case "read-selection":
 				if (!info.selectionText) return;
-				console.log("Selection message send")
 				await chrome.sidePanel.open({ windowId: tab.windowId });
 				if (sidePanelPort) {
 					readSelection(info.selectionText, sidePanelPort);

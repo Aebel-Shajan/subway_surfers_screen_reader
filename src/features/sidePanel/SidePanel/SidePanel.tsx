@@ -43,7 +43,6 @@ const SidePanel = () => {
    * @remark  https://developer.chrome.com/docs/extensions/reference/api/tts#listen_to_events
    */
   function ttsEventHandler(event: chrome.tts.TtsEvent, textBeingRead: string) {
-    console.log(event)
     switch (event.type) {
       case "start":
         setHasStarted(true)
@@ -161,10 +160,8 @@ const SidePanel = () => {
     const intervalId = setInterval(() => {
       port.postMessage({ info: "keeping connection open" });
     }, 1000);
-    console.log("sidepanel port opened - from sidepanel")
     port.onDisconnect.addListener(() => {
       clearInterval(intervalId)
-      console.log("sidepanel port closed - from sidepanel")
     })
 
     interface message {
