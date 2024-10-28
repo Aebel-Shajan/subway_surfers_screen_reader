@@ -9,6 +9,14 @@ import Youtube from "./Youtube/Youtube";
 import { pauseVideoPlayer, playVideoPlayer, seekVideoToRandomTime, stopVideoPlayer } from "@/utils/youtubeHelpers";
 
 
+const placeholderText = "\
+Either: \n\
+  right click > click 'Read website'\n\
+or\n\
+  select text > right click > click 'Read selection'\n\
+or\n\
+  copy and paste content here\n\
+"
 
 const SidePanel = () => {
   // States
@@ -199,7 +207,7 @@ const SidePanel = () => {
           {!hasStarted ? 
             <textarea
             disabled={hasStarted}
-            placeholder="Type your text to read aloud here."
+            placeholder={placeholderText}
             value={inputText}
             onChange={(event) => setInputText(event.target.value)}
             />
