@@ -186,9 +186,11 @@ const SidePanel = () => {
         </header>
         <div className={styles.textareaContainer}>
           <textarea
+            disabled={hasStarted}
             placeholder="Type your text to read aloud here."
             value={inputText}
             onChange={(event) => setInputText(event.target.value)}
+            style={hasStarted? {backgroundColor:"#C0C0C0"} : {}}
           />
         </div>
 
