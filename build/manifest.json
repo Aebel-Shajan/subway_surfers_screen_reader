@@ -7,6 +7,8 @@
         "128": "assets/genz-screenreader-logo.png"
     },
     "permissions": [
+        "activeTab",
+        "scripting",
         "sidePanel",
         "contextMenus",
         "tts"
