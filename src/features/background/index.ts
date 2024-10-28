@@ -1,4 +1,4 @@
-import { Readability } from "@mozilla/readability";
+
 
 let sidePanelPort: chrome.runtime.Port|null = null;
 let onSidePanelConnect = () => {};
@@ -47,12 +47,11 @@ chrome.contextMenus.onClicked.addListener(
 			case "read-website":
 				await chrome.sidePanel.open({ windowId: tab.windowId });
 				if (sidePanelPort) {
-					readWebsite(tab.id, sidePanelPort);
+					readWebsite(tab.id);
 				} else {
 					const tabId = tab.id;
 					onSidePanelConnect = () => {
-						if (!sidePanelPort) return
-						readWebsite(tabId, sidePanelPort);
+						readWebsite(tabId);
 					}
 				}
 				break;
@@ -79,15 +78,9 @@ function readSelection(selection: string, sidePanelPort: chrome.runtime.Port) {
 	sidePanelPort.postMessage({text: selection})
 }
 
-function readWebsite(tabId: number, sidePanelPort: chrome.runtime.Port) {
+function readWebsite(tabId: number) {
 	chrome.scripting.executeScript({
 		target: { tabId: tabId },
-		func: () => {
-			const websiteContent = new Readability(document).parse();
-			if (websiteContent) {
-				sidePanelPort.postMessage({ text: websiteContent.textContent });
-			}
-		},
-		args: []
+		files: ["background/parseWebsite.js"]
 	})
 }

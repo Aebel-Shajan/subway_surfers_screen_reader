@@ -9,7 +9,8 @@ export default mergeConfig(
     outDir: "build/background/",
     rollupOptions: {
         input: {
-            background: "src/features/background/index.ts"
+            background: "src/features/background/index.ts",
+            parseWebsite: "src/features/background/parseWebsite.ts"
         }
     }
   }

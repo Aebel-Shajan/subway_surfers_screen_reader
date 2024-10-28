@@ -151,8 +151,18 @@ const SidePanel = () => {
       console.log("sidepanel port closed - from sidepanel")
     })
 
-    // On message 
+    // On message from background (selection text)
     port.onMessage.addListener(async (message) => {
+      stopScreenReader()
+      if (!message.text) return
+      await delay(800) // The loading is artificial 🤭.
+      const textToRead = cleanUpText(message.text)
+      setInputText(textToRead)
+      startScreenReader(textToRead)
+    })
+
+    // on message from script being executed in activeTab
+    chrome.runtime.onMessage.addListener(async (message) => {
       stopScreenReader()
       if (!message.text) return
       await delay(800) // The loading is artificial 🤭.
