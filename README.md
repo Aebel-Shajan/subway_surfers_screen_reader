@@ -9,10 +9,17 @@
 
 ## Installation
 
+### Prerequisites
+Note you muse have the following installed before proceeding:
+* [Node](https://nodejs.org/en)
+* [git](https://git-scm.com/downloads)
+* [Chrome](https://www.google.com/chrome/)
 
-<table>
+To preview and develop the extension locallly follow these steps:
+
+<table width="100%">
 <tr>
-<td width="5%"> Step </td> <td width="20%"> Description </td> <td width="75%" > Action</td>
+<td width="2%">  </td> <td width="28%"> Description </td> <td width="70%" > Action</td>
 </tr>
 <tr>
 <td colspan="3" > <b>Local project setup</b></td>
@@ -30,7 +37,7 @@ git clone https://github.com/Aebel-Shajan/subway_surfers_screen_reader.git
 </tr>
 <tr>
 <td> 2 </td>
-<td>`cd` into project folder</td>
+<td> cd into project folder</td>
 <td>
     
 ```bash
@@ -64,17 +71,32 @@ npm run build
 <tr>
 <td colspan="3" > <b>Loading the extension into chrome</b></td>
 </tr>
+<tr>
+<td> 5 </td>
+<td> Open google chrome and go to the url: </td>
+<td>
+
+```bash
+chrome://extensions
+```
+</td>
+</tr>
+<tr>
+<td> 6 </td>
+<td> Enable developer mode by toggling the switch in the right corner</td>
+<td><img src="https://github.com/user-attachments/assets/1bb92d7c-39fc-4cf5-af4e-22f9636375d6"></td>
+</tr>
+<tr>
+<td> 7 </td>
+<td markdown="1"> 
+    
+Click on `Load unpacked` and select the folder `subway_surfers_screen_reader/build`
+    
+</td>
+<td><img width="100%" src="https://github.com/user-attachments/assets/214a789a-1352-474d-98f7-17c4cd5439dd"></img></td>
+</tr>
+<tr><td colspan="3" align="center"><b>🎉 The extension should be installed locally in chrome 🎉</b></td></tr>
 </table>
-
-
-
-2. Open Google Chrome and go to `chrome://extensions`.
-
-3. Enable Developer mode by toggling the switch in the top right corner.
-
-4. Click on "Load unpacked" and select "subway_surfers_screen_reader/build".
-
-5. The extension should now be installed and visible in the extensions list.
 
 ## Usage
 
