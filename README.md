@@ -19,7 +19,6 @@ To preview and develop the extension locallly follow these steps:
 
 |   | Description                             | Action                                                                                     |
 |---|-----------------------------------------|--------------------------------------------------------------------------------------------|
-![][col-img] | ![][col-img] | ![][col-img]
 | 1 | Clone the repo in the terminal          |<pre><code>git clone https://github.com/Aebel-Shajan/subway_surfers_screen_reader.git</code></pre>              
 | 2 | cd into project folder                  |<pre><code>cd subway_surfers_screen_reader</code></pre>
 | 3 | Install the npm dependencies            |<pre><code>npm install </code></pre>                                                                             
@@ -50,5 +49,5 @@ or
 
 Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
 
-[col-img]: https://github.com/user-attachments/assets/45d3917a-b5da-4bae-a6d5-b25150c6b6ce
+[col-img]: 
 
