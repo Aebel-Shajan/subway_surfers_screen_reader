@@ -10,21 +10,69 @@
 ## Installation
 
 
+<table>
+<tr>
+<td width="5%"> Step </td> <td width="20%"> Description </td> <td width="75%" > Action</td>
+</tr>
+<tr>
+<td colspan="3" > <b>Local project setup</b></td>
+</tr>
+<tr>
+<td> 1 </td>
+<td>Clone the repo in the terminal</td>
+<td>
+    
+```bash
+git clone https://github.com/Aebel-Shajan/subway_surfers_screen_reader.git
+```
+
+</td>
+</tr>
+<tr>
+<td> 2 </td>
+<td>`cd` into project folder</td>
+<td>
+    
+```bash
+cd subway_surfers_screen_reader
+```
+
+</td>
+</tr>
+<tr>
+<td> 3 </td>
+<td> Install the npm dependencies </td>
+<td>
+
+```bash
+npm install
+```
+    
+</td>
+</tr>
+<tr>
+<td> 4 </td>
+<td> Build the extension </td>
+<td>
+
+```bash
+npm run build
+```
+
+</td>
+</tr>
+<tr>
+<td colspan="3" > <b>Loading the extension into chrome</b></td>
+</tr>
+</table>
 
 
-0. Either install from the web store or run locally using the steps below
-
-1. Clone the repository:
-
-    ```bash
-    git clone https://github.com/Aebel-Shajan/subway_surfers_screen_reader.git
-    ```
 
 2. Open Google Chrome and go to `chrome://extensions`.
 
 3. Enable Developer mode by toggling the switch in the top right corner.
 
-4. Click on "Load unpacked" and select the cloned repository folder.
+4. Click on "Load unpacked" and select "subway_surfers_screen_reader/build".
 
 5. The extension should now be installed and visible in the extensions list.
 
