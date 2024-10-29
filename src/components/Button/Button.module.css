@@ -1,0 +1,25 @@
+.button {
+    font-size: 1rem;
+    padding: 0.35rem 0.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: #3C93D2;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button:hover {
+    color: #3C93D2;
+    background-color: white;
+    cursor: pointer;
+}
+
+.button:active {
+    color: black;
+}
+
+.button:disabled, .button[disabled] {
+    background-color: grey;
+}

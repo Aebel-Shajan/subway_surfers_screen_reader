@@ -7,6 +7,8 @@ import { useEffect, useRef, useState } from "react";
 import { pauseVideoPlayer, playVideoPlayer, seekVideoToRandomTime, stopVideoPlayer } from "@/utils/youtubeHelpers";
 import { cleanUpText, delay } from "@/utils/utils";
 import logo from "@/assets/genz-screenreader-logo.png"
+import Header from "@/components/Header/Header";
+import Button from "@/components/Button/Button";
 
 
 const placeholderText = "\
@@ -19,7 +21,7 @@ or\n\
 "
 
 const MainPage = () => {
-    // States
+  // States
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [inputText, setInputText] = useState<string>("")
   const [isPlaying, setIsPlaying] = useState<boolean>(false)
@@ -190,63 +192,60 @@ const MainPage = () => {
     }
   }, [])
 
-    return ( 
-        <PanelGroup className={styles.container} direction="vertical" autoSaveId="persistence">
-      {isLoading? <div className={styles.loader}></div>: null}
+  return (
+    <PanelGroup className={styles.container} direction="vertical" autoSaveId="persistence">
+      {isLoading ? <div className={styles.loader}></div> : null}
       <Panel maxSize={75} className={styles.upperPanel}>
-        <header>
+        <Header>
           <img src={logo} />
           <span>Subway Surfers Screen Reader</span>
-        </header>
+        </Header>
         <div className={styles.textareaContainer}>
-          {!hasStarted ? 
+          {!hasStarted ?
             <textarea
-            disabled={hasStarted}
-            placeholder={placeholderText}
-            value={inputText}
-            onChange={(event) => setInputText(event.target.value)}
+              disabled={hasStarted}
+              placeholder={placeholderText}
+              value={inputText}
+              onChange={(event) => setInputText(event.target.value)}
             />
             :
-            <div style={isPlaying ? {pointerEvents: "none"}: {}}>
-              {highlightPos ? 
-              <>
-                {inputText.slice(0, highlightPos[0])}
-                <span ref={highlightRef}>
-                  {inputText.slice(highlightPos[0], highlightPos[1])}
-                </span>
-                {inputText.slice(highlightPos[1], inputText.length)}
-              </>
-               : inputText}
+            <div style={isPlaying ? { pointerEvents: "none" } : {}}>
+              {highlightPos ?
+                <>
+                  {inputText.slice(0, highlightPos[0])}
+                  <span ref={highlightRef}>
+                    {inputText.slice(highlightPos[0], highlightPos[1])}
+                  </span>
+                  {inputText.slice(highlightPos[1], inputText.length)}
+                </>
+                : inputText}
             </div>
           }
-          
+
         </div>
 
         <div className={styles.buttonContainer} >
-          <button
-            id="clear-text"
+          <Button
             onClick={handleClearText}
             disabled={isPlaying || hasStarted}
           >
             <FaTrash />
-          </button>
-          <button 
-            id="play-pause" 
+          </Button>
+          <Button
             onClick={handlePlayPause}
           >
-            {isPlaying ? <FaPause />: <FaPlay/> }
-          </button>
-          <button 
-            id="stop" 
+            {isPlaying ? <FaPause /> : <FaPlay />}
+          </Button>
+          <Button
             disabled={!hasStarted}
             onClick={handleStop}
           >
             <FaStop />
-          </button>
-          <button 
+          </Button>
+          <Button
             onClick={() => window.open('https://github.com/Aebel-Shajan/subway_surfers_screen_reader/issues')}>
-              <FaBug />
-            </button>
+            <FaBug />
+          </Button>
 
         </div>
 
@@ -256,14 +255,14 @@ const MainPage = () => {
       </PanelResizeHandle>
       <Panel defaultSize={70}>
         <div className={styles.lowerPanel}>
-        <Youtube videoId="BkWT66jE8Hs" ref={youtubeRef} />
-        <div className={styles.overlay}>
-          {isPlaying ? <p>{currentWord}</p> : null}
-        </div>
+          <Youtube videoId="BkWT66jE8Hs" ref={youtubeRef} />
+          <div className={styles.overlay}>
+            {isPlaying ? <p>{currentWord}</p> : null}
+          </div>
         </div>
       </Panel>
     </PanelGroup>
-    );
+  );
 }
- 
+
 export default MainPage;
