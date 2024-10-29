@@ -1,7 +1,7 @@
 import { MdDragHandle } from "react-icons/md";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import styles from "./MainPage.module.css";
-import { FaBug, FaPause, FaPlay, FaStop, FaTrash } from "react-icons/fa6";
+import { FaPause, FaPlay, FaStop, FaTrash } from "react-icons/fa6";
 import { useEffect, useRef, useState } from "react";
 import { pauseVideoPlayer, playVideoPlayer, seekVideoToRandomTime, stopVideoPlayer } from "@/utils/youtubeHelpers";
 import { cleanUpText, delay } from "@/utils/utils";
@@ -10,6 +10,8 @@ import Header from "@/components/Header/Header";
 import Button from "@/components/Button/Button";
 import CustomTextarea from "@/components/CustomTextarea/CustomTextarea";
 import Youtube from "@/components/Youtube/Youtube";
+import { ExtensionOptions } from "@/types/options";
+import { FaCog } from "react-icons/fa";
 
 
 const placeholderText = "\
@@ -21,10 +23,23 @@ or\n\
   copy and paste content here\n\
 "
 
-const MainPage = () => {
+interface MainPageProps {
+  setPage: CallableFunction,
+  options: ExtensionOptions,
+  inputText: string,
+  setInputText: CallableFunction
+}
+
+const MainPage = (
+  {
+    setPage,
+    inputText,
+    setInputText
+  }
+  : MainPageProps
+) => {
   // States
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [inputText, setInputText] = useState<string>("")
   const [isPlaying, setIsPlaying] = useState<boolean>(false)
   const [hasStarted, setHasStarted] = useState<boolean>(false)
   const [currentWord, setCurrentWord] = useState<string>("")
@@ -224,8 +239,8 @@ const MainPage = () => {
             <FaStop />
           </Button>
           <Button
-            onClick={() => window.open('https://github.com/Aebel-Shajan/subway_surfers_screen_reader/issues')}>
-            <FaBug />
+            onClick={() => setPage("options")}>
+            <FaCog />
           </Button>
 
         </div>
