@@ -13,7 +13,7 @@ const SidePanel = () => {
 
 
   if (page==="options") {
-    return <OptionsPage setPage={setPage} setOptions={setOptions} />
+    return <OptionsPage setPage={setPage} setOptions={setOptions} options={options} />
   }
   return <MainPage 
     setPage={setPage} 

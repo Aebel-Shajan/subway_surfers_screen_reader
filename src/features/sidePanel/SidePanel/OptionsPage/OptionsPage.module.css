@@ -1,5 +1,13 @@
 .container {
     width: 100%;
-    height: fit-content;
-    min-height: 100vh;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.optionsContainer {
+    display: flex;
+    direction: column;
+    width: 100%;
+    flex-grow: 1;
 }
