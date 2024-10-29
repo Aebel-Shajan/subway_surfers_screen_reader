@@ -17,105 +17,20 @@ Note you muse have the following installed before proceeding:
 
 To preview and develop the extension locallly follow these steps:
 
-<table width="100%">
+|   | Description                             | Action                                                                                     |
+|---|-----------------------------------------|--------------------------------------------------------------------------------------------|
+![][col-img] | ![][col-img] | ![][col-img]
+| 1 | Clone the repo in the terminal          |<pre><code>git clone https://github.com/Aebel-Shajan/subway_surfers_screen_reader.git</code></pre>              
+| 2 | cd into project folder                  |<pre><code>cd subway_surfers_screen_reader</code></pre>
+| 3 | Install the npm dependencies            |<pre><code>npm install </code></pre>                                                                             
+| 4 | Build the extension                     |<pre><code>npm run build </code></pre>                                                                                 
+| 5 | Open google chrome and go to the URL    |<pre><code>chrome://extensions </code></pre>                                                                   
+| 6 | Enable developer mode                   |<img src="https://github.com/user-attachments/assets/1bb92d7c-39fc-4cf5-af4e-22f9636375d6">                     
+| 7 | Load the extension                      |Click on `Load unpacked` and select the folder "subway_surfers_screen_reader/build"  <img src="https://github.com/user-attachments/assets/214a789a-1352-474d-98f7-17c4cd5439dd">  
 
-<tr>
-<td width="2%">  </td> <td width="28%"> Description </td> <td width="70%" > Action</td>
-</tr>
-<tr>
-<td colspan="3" > <b>Local project setup</b></td>
-</tr>
-<tr>
-<td>
-    
-![1_unit](https://github.com/user-attachments/assets/81cbf61f-4d9a-44e4-b2c7-4320fef4c679)
-    
-</td>
-<td>
-    
-![2_unit](https://github.com/user-attachments/assets/7a6aef17-2bea-4b99-baa4-150a5ec745f3)
-    
-</td>
-<td>
-    
-![7_unit](https://github.com/user-attachments/assets/be820119-c1eb-4017-8635-becd1956344b)
-    
-</td>
-</tr>
-<tr>
-<td> 1 </td>
-<td>Clone the repo in the terminal</td>
-<td>
-    
-```bash
-git clone https://github.com/Aebel-Shajan/subway_surfers_screen_reader.git
-```
+**🎉 The extension should be installed locally in chrome 🎉** 
 
-</td>
-</tr>
-<tr>
-<td> 2 </td>
-<td> cd into project folder</td>
-<td>
-    
-```bash
-cd subway_surfers_screen_reader
-```
-
-</td>
-</tr>
-<tr>
-<td> 3 </td>
-<td> Install the npm dependencies </td>
-<td>
-
-```bash
-npm install
-```
-    
-</td>
-</tr>
-<tr>
-<td> 4 </td>
-<td> Build the extension </td>
-<td>
-
-```bash
-npm run build
-```
-
-</td>
-</tr>
-<tr>
-<td colspan="3" > <b>Loading the extension into chrome</b></td>
-</tr>
-<tr>
-<td> 5 </td>
-<td> Open google chrome and go to the url: </td>
-<td>
-
-```bash
-chrome://extensions
-```
-</td>
-</tr>
-<tr>
-<td> 6 </td>
-<td> Enable developer mode by toggling the switch in the right corner</td>
-<td><img src="https://github.com/user-attachments/assets/1bb92d7c-39fc-4cf5-af4e-22f9636375d6"></td>
-</tr>
-<tr>
-<td> 7 </td>
-<td > 
-    
-Click on `Load unpacked` and select the folder "subway_surfers_screen_reader/build"
-
-</td>
-<td><img width="100%" src="https://github.com/user-attachments/assets/214a789a-1352-474d-98f7-17c4cd5439dd"></img></td>
-</tr>
-<tr><td colspan="3" align="center"><b>🎉 The extension should be installed locally in chrome 🎉</b></td></tr>
-</table>
-
+<!-- Why not use a html table? Markdown tables have this property which disable overflow:scroll -->
 ## Usage
 
 1. right click > click 'Read website'
@@ -134,4 +49,6 @@ or
 ## Contributing
 
 Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
+
+[col-img]: https://github.com/user-attachments/assets/45d3917a-b5da-4bae-a6d5-b25150c6b6ce
 
