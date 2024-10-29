@@ -9,6 +9,7 @@ import { cleanUpText, delay } from "@/utils/utils";
 import logo from "@/assets/genz-screenreader-logo.png"
 import Header from "@/components/Header/Header";
 import Button from "@/components/Button/Button";
+import CustomTextarea from "@/components/CustomTextarea/CustomTextarea";
 
 
 const placeholderText = "\
@@ -31,7 +32,6 @@ const MainPage = () => {
 
   // Refs
   const youtubeRef = useRef<HTMLIFrameElement|null>(null)
-  const highlightRef = useRef<HTMLSpanElement|null>(null)
 
   // Functions
   /**
@@ -59,9 +59,6 @@ const MainPage = () => {
         if (event.charIndex===undefined|| event.length===undefined) break
         setCurrentWord(textBeingRead.slice(event.charIndex, event.charIndex + event.length))
         setHiglightPos([event.charIndex, event.charIndex + event.length])
-        if (highlightRef.current) {
-          highlightRef.current.scrollIntoView()
-        }
         break
       case "end":
       case "interrupted":
@@ -200,29 +197,13 @@ const MainPage = () => {
           <img src={logo} />
           <span>Subway Surfers Screen Reader</span>
         </Header>
-        <div className={styles.textareaContainer}>
-          {!hasStarted ?
-            <textarea
-              disabled={hasStarted}
-              placeholder={placeholderText}
-              value={inputText}
-              onChange={(event) => setInputText(event.target.value)}
-            />
-            :
-            <div style={isPlaying ? { pointerEvents: "none" } : {}}>
-              {highlightPos ?
-                <>
-                  {inputText.slice(0, highlightPos[0])}
-                  <span ref={highlightRef}>
-                    {inputText.slice(highlightPos[0], highlightPos[1])}
-                  </span>
-                  {inputText.slice(highlightPos[1], inputText.length)}
-                </>
-                : inputText}
-            </div>
-          }
-
-        </div>
+        <CustomTextarea
+          highlightMode={hasStarted}
+          highlightRange={highlightPos}
+          inputText={inputText}
+          setInputText={setInputText}
+          placeholder={placeholderText}
+        />
 
         <div className={styles.buttonContainer} >
           <Button
