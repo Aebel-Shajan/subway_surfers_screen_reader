@@ -1,6 +1,5 @@
 import { MdDragHandle } from "react-icons/md";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
-import Youtube from "../Youtube/Youtube";
 import styles from "./MainPage.module.css";
 import { FaBug, FaPause, FaPlay, FaStop, FaTrash } from "react-icons/fa6";
 import { useEffect, useRef, useState } from "react";
@@ -10,6 +9,7 @@ import logo from "@/assets/genz-screenreader-logo.png"
 import Header from "@/components/Header/Header";
 import Button from "@/components/Button/Button";
 import CustomTextarea from "@/components/CustomTextarea/CustomTextarea";
+import Youtube from "@/components/Youtube/Youtube";
 
 
 const placeholderText = "\
