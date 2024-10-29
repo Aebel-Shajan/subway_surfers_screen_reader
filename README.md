@@ -88,10 +88,10 @@ chrome://extensions
 </tr>
 <tr>
 <td> 7 </td>
-<td markdown="1"> 
+<td > 
     
-Click on `Load unpacked` and select the folder `subway_surfers_screen_reader/build`
-    
+Click on `Load unpacked` and select the folder "subway_surfers_screen_reader/build"
+
 </td>
 <td><img width="100%" src="https://github.com/user-attachments/assets/214a789a-1352-474d-98f7-17c4cd5439dd"></img></td>
 </tr>
