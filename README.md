@@ -1,19 +1,16 @@
-# Subway Surfers Screen Reader
-
-Browsing the web is boring, I would much rather go on tiktok or yt shorts. This extension turns everything into easy to watch subway surfer gameplay.
-
-Click the image below to install the extension!
-
- [![](https://github.com/Aebel-Shajan/subway_surfers_screen_reader/blob/main/thumbnail.png)](https://chromewebstore.google.com/detail/subway-surfers-screen-rea/jcijfneifjnhbgahlokgkmpcnocgpegd)
-
-## Youtube demo
-Click below to open the youtube demo:
-
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/JuJiM2TYbiw/0.jpg)](https://www.youtube.com/watch?v=JuJiM2TYbiw)
+<p align="center"><a target="_blank" href="https://chromewebstore.google.com/detail/scroll-minimap-for-chatgp/apekbedjllgmacohbcckgipfhjddehkf"><img src="./src/assets/genz-screenreader-logo.png" height=100 ></a></p>
+<h1 align="center"> Subway Surfers Screen Reader </h1>
+<p align="center"><a target="_blank" href="https://chromewebstore.google.com/detail/scroll-minimap-for-chatgp/apekbedjllgmacohbcckgipfhjddehkf"><img src="https://img.shields.io/badge/Chrome%20Web%20Store-4285F4?logo=chromewebstore&logoColor=fff&style=for-the-badge" /></a></p>
+<p align="center">Screen reader extension with subway surfers playing in the sidepanel.</p>
 
 
+[![unnamed](./thumbnail.png)](https://chromewebstore.google.com/detail/scroll-minimap-for-chatgp/apekbedjllgmacohbcckgipfhjddehkf) | <video src="https://github.com/user-attachments/assets/7fca8c54-1b72-43c0-af0a-71233902a4f7.mp4" />
+-|-
 
 ## Installation
+
+
+
 
 0. Either install from the web store or run locally using the steps below
 
