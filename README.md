@@ -18,11 +18,29 @@ Note you muse have the following installed before proceeding:
 To preview and develop the extension locallly follow these steps:
 
 <table width="100%">
+
 <tr>
 <td width="2%">  </td> <td width="28%"> Description </td> <td width="70%" > Action</td>
 </tr>
 <tr>
 <td colspan="3" > <b>Local project setup</b></td>
+</tr>
+<tr>
+<td>
+    
+![1_unit](https://github.com/user-attachments/assets/81cbf61f-4d9a-44e4-b2c7-4320fef4c679)
+    
+</td>
+<td>
+    
+![2_unit](https://github.com/user-attachments/assets/7a6aef17-2bea-4b99-baa4-150a5ec745f3)
+    
+</td>
+<td>
+    
+![7_unit](https://github.com/user-attachments/assets/be820119-c1eb-4017-8635-becd1956344b)
+    
+</td>
 </tr>
 <tr>
 <td> 1 </td>
