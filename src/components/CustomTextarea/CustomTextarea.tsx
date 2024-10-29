@@ -33,10 +33,15 @@ const CustomTextarea = (
 
 	if (highlightMode) {
 		if (!highlightRange) {
-			return <div className={styles.textarea}>{inputText}</div>
+			return (
+				<div className={styles.textareaContainer}>
+					<div className={styles.textarea}>{inputText}</div>
+				</div>
+			)
 		}
 
 		return (
+			<div className={styles.textareaContainer}>
 			<div className={styles.textarea}>
 				{inputText.slice(0, highlightRange[0])}
 				<span ref={highlightRef}>
@@ -44,16 +49,20 @@ const CustomTextarea = (
 				</span>
 				{inputText.slice(highlightRange[1], inputText.length)}
 			</div>
+			</div>
 		)
 	}
 
 	return (
-		<textarea
-			className={styles.textarea}
-			placeholder={placeholder}
-			value={inputText}
-			onChange={(event) => setInputText(event.target.value)}
-		/>
+		<div className={styles.textareaContainer}>
+			<textarea
+				rows={0}
+				className={styles.textarea}
+				placeholder={placeholder}
+				value={inputText}
+				onChange={(event) => setInputText(event.target.value)}
+			/>
+		</div>
 	);
 }
 
