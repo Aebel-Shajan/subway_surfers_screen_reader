@@ -1,11 +1,17 @@
 import { forwardRef } from "react";
 import styles from "./Youtube.module.css";
+import getVideoId from 'get-video-id';
 
 interface YoutubeProps{
-    videoId: string
+    videoUrl: string
 }
 
-const Youtube = ({videoId}: YoutubeProps, ref: React.ForwardedRef<HTMLIFrameElement>) => {
+const Youtube = ({videoUrl}: YoutubeProps, ref: React.ForwardedRef<HTMLIFrameElement>) => {
+    let videoId: string | undefined = getVideoId(videoUrl).id
+    if (!videoId) {
+        videoId = "ZWcRmoLqhkc"
+    }
+
     return (
     <iframe 
         className={styles.iframe}

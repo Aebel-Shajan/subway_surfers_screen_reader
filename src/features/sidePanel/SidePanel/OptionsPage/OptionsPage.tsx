@@ -3,7 +3,6 @@ import styles from "./OptionsPage.module.css"
 import Button from "@/components/Button/Button";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import CustomSelect from "@/components/CustomSelect/CustomSelect";
-import { DEFAULT_OPTIONS } from "@/constants";
 import { useState } from "react";
 import { ExtensionOptions } from "@/types/options";
 
@@ -37,7 +36,7 @@ const OptionsPage = ({setPage, options, setOptions}: OptionsPageProps) => {
           label="Set background video"
           selected={selectedVideo}
           setSelected={handleVideoSelect}
-          options={DEFAULT_OPTIONS.videos}
+          options={options.videos}
         />
       </div>
     </div>

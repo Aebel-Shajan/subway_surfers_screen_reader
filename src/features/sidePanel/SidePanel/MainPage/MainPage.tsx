@@ -34,7 +34,8 @@ const MainPage = (
   {
     setPage,
     inputText,
-    setInputText
+    setInputText,
+    options
   }
   : MainPageProps
 ) => {
@@ -251,7 +252,7 @@ const MainPage = (
       </PanelResizeHandle>
       <Panel defaultSize={70}>
         <div className={styles.lowerPanel}>
-          <Youtube videoId="BkWT66jE8Hs" ref={youtubeRef} />
+          <Youtube videoUrl={options.videos[options.selectedVideo].url} ref={youtubeRef} />
           <div className={styles.overlay}>
             {isPlaying ? <p>{currentWord}</p> : null}
           </div>

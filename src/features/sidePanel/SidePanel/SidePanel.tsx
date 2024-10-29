@@ -11,7 +11,6 @@ const SidePanel = () => {
   const [options, setOptions] = useState<ExtensionOptions>(DEFAULT_OPTIONS)
   const [inputText, setInputText] = useState<string>("")
 
-
   if (page==="options") {
     return <OptionsPage setPage={setPage} setOptions={setOptions} options={options} />
   }
