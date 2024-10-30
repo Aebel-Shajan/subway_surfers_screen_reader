@@ -67,7 +67,10 @@ const OptionsPage = ({setPage, options, setOptions}: OptionsPageProps) => {
     setStartTime(DEFAULT_OPTIONS.startTime)
     setDuration(DEFAULT_OPTIONS.duration)
     setRandomStart(DEFAULT_OPTIONS.randomStart)
-    setOptions(DEFAULT_OPTIONS)
+    // Preserve user vids
+    const newOptions = {...DEFAULT_OPTIONS}
+    newOptions.videos = options.videos
+    setOptions(newOptions)
   }
 
   function setVideos(newVideos: VideoInfo[]) {
