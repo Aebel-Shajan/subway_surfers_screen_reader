@@ -48,7 +48,7 @@ const OptionsPage = ({setPage, options, setOptions}: OptionsPageProps) => {
     const newTime = Number(event.target.value)
     setDuration(newTime)
     const newOptions = {...options}
-    newOptions.startTime = newTime
+    newOptions.duration = newTime
     setOptions(newOptions)
     if (newTime < startTime) {
       setStartTime(newTime)

@@ -3,7 +3,7 @@ import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import styles from "./MainPage.module.css";
 import { FaPause, FaPlay, FaStop, FaTrash } from "react-icons/fa6";
 import { useEffect, useRef, useState } from "react";
-import { pauseVideoPlayer, playVideoPlayer, seekVideoToRandomTime, stopVideoPlayer } from "@/utils/youtubeHelpers";
+import { pauseVideoPlayer, playVideoPlayer, seekVideoPlayer, seekVideoToRandomTime, stopVideoPlayer } from "@/utils/youtubeHelpers";
 import { cleanUpText, delay } from "@/utils/utils";
 import logo from "@/assets/genz-screenreader-logo.png"
 import Header from "@/components/Header/Header";
@@ -101,7 +101,11 @@ const MainPage = (
    */
   async function startScreenReader(textToRead: string) {
     if (!youtubeRef.current) return 
-    seekVideoToRandomTime(youtubeRef.current, 300, 3600)
+    if (options.randomStart) {
+      seekVideoToRandomTime(youtubeRef.current, options.startTime, options.duration)
+    } else {
+      seekVideoPlayer(youtubeRef.current, options.startTime)
+    }
     await delay(500)
     playVideoPlayer(youtubeRef.current)
     await delay(500)
