@@ -15,6 +15,6 @@ export const DEFAULT_OPTIONS: ExtensionOptions = {
         }
     ],
     startTime: 240,
-    endTime: 3600,
-    randomTime: true
+    duration: 3600,
+    randomStart: true
 }

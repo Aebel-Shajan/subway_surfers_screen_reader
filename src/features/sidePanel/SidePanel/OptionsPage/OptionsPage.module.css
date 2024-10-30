@@ -7,7 +7,14 @@
 
 .optionsContainer {
     display: flex;
-    direction: column;
+    flex-direction: column;
     width: 100%;
     flex-grow: 1;
+    gap: 1rem;
+    padding: 1rem;
+
+    div {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+    }
 }
