@@ -20,7 +20,7 @@ const OptionsPage = ({setPage, options, setOptions}: OptionsPageProps) => {
   const [selectedVideo, setSelectedVideo] = useState<number>(options.selectedVideo)
   const [randomStart, setRandomStart] = useState<boolean>(options.randomStart)
   const [startTime, setStartTime] = useState<number>(options.startTime)
-  const [duration, setDuration] = useState<number>(options.duration)
+  const [randomRange, setRandomRange] = useState<number>(options.randomRange)
 
   // Mantine Hooks
   const [videoSelectOpened, videoSelectHandler] = useDisclosure(false)
@@ -51,21 +51,14 @@ const OptionsPage = ({setPage, options, setOptions}: OptionsPageProps) => {
     setOptions(newOptions)
   }
 
-  function handleChangeDuration(event: ChangeEvent<HTMLInputElement>) {
-    const newTime = Number(event.target.value)
-    setDuration(newTime)
-    const newOptions = {...options}
-    newOptions.duration = newTime
-    setOptions(newOptions)
-    if (newTime < startTime) {
-      setStartTime(newTime)
-    }
+  function handleChangeRandomRange(event: ChangeEvent<HTMLInputElement>) {
+    setRandomRange(Number(event.target.value))
   }
 
   function handleResetToDefault() {
     setSelectedVideo(DEFAULT_OPTIONS.selectedVideo)
     setStartTime(DEFAULT_OPTIONS.startTime)
-    setDuration(DEFAULT_OPTIONS.duration)
+    setRandomRange(DEFAULT_OPTIONS.randomRange)
     setRandomStart(DEFAULT_OPTIONS.randomStart)
     // Preserve user vids
     const newOptions = {...DEFAULT_OPTIONS}
@@ -101,26 +94,27 @@ const OptionsPage = ({setPage, options, setOptions}: OptionsPageProps) => {
           <input 
             type="range" 
             min="0" 
-            max={duration}
+            max="3600"
             value={startTime}
             onChange={handleChangeStartTime} 
             onMouseUp={handleStartTimePicked}
             onTouchEnd={handleStartTimePicked}
           />
         </div>
+        <div onClick={handleCheckRandomStart}>
+          <label >Start at random time</label>
+          <input type="checkbox" checked={randomStart}/>
+        </div>
         <div>
-          <label>Duration of the video</label>
+          <label style={!randomStart ? {color: "grey"}: {}}>Random time range</label>
           <input 
             type="number" 
             min="0" 
             max={7200}
-            value={duration}
-            onChange={handleChangeDuration}
+            value={randomRange}
+            onChange={handleChangeRandomRange}
+            disabled= {!randomStart}
             />
-        </div>
-        <div onClick={handleCheckRandomStart}>
-          <label >Start at random time</label>
-          <input type="checkbox" checked={randomStart}/>
         </div>
 
         <Modal opened={videoSelectOpened} onClose={videoSelectHandler.close} title="Select a video">

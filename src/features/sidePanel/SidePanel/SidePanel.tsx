@@ -21,7 +21,7 @@ const SidePanel = () => {
           selectedVideo: newOptions.selectedVideo ? newOptions.selectedVideo : DEFAULT_OPTIONS.selectedVideo,
           startTime: newOptions.startTime ? newOptions.startTime : DEFAULT_OPTIONS.startTime,
           randomStart: newOptions.randomStart ? newOptions.randomStart : DEFAULT_OPTIONS.randomStart,
-          duration: newOptions.duration ? newOptions.duration : DEFAULT_OPTIONS.duration,
+          randomRange: newOptions.randomRange ? newOptions.randomRange : DEFAULT_OPTIONS.randomRange,
           videos: newOptions.videos ? newOptions.videos : DEFAULT_OPTIONS.videos,
         })
       }

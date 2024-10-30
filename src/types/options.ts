@@ -2,7 +2,7 @@ export interface ExtensionOptions {
     selectedVideo: number,
     videos: VideoInfo[],
     startTime: number,
-    duration: number,
+    randomRange: number,
     randomStart: boolean
   }
   

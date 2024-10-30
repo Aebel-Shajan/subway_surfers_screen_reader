@@ -102,7 +102,7 @@ const MainPage = (
   async function startScreenReader(textToRead: string) {
     if (!youtubeRef.current) return 
     if (options.randomStart) {
-      seekVideoToRandomTime(youtubeRef.current, options.startTime, options.duration)
+      seekVideoToRandomTime(youtubeRef.current, options.startTime, options.startTime + options.randomRange)
     } else {
       seekVideoPlayer(youtubeRef.current, options.startTime)
     }

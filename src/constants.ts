@@ -17,6 +17,6 @@ export const DEFAULT_OPTIONS: ExtensionOptions = {
     selectedVideo: 0,
     videos: DEFAULT_VIDEOS,
     startTime: 240,
-    duration: 3600,
+    randomRange: 3600,
     randomStart: true
 }
