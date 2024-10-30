@@ -4,7 +4,7 @@ import Button from "@/components/Button/Button";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import CustomSelect from "@/components/CustomSelect/CustomSelect";
 import { ChangeEvent, useState } from "react";
-import { ExtensionOptions } from "@/types/options";
+import { ExtensionOptions, VideoInfo } from "@/types/options";
 import { DEFAULT_OPTIONS } from "@/constants";
 import { useDisclosure } from "@mantine/hooks";
 import { Modal } from "@mantine/core";
@@ -70,6 +70,12 @@ const OptionsPage = ({setPage, options, setOptions}: OptionsPageProps) => {
     setOptions(DEFAULT_OPTIONS)
   }
 
+  function setVideos(newVideos: VideoInfo[]) {
+    const newOptions = {...options}
+    newOptions.videos = newVideos
+    setOptions(newOptions)
+  }
+
   return ( 
     <div className={styles.container}>
       <Header>
@@ -115,11 +121,11 @@ const OptionsPage = ({setPage, options, setOptions}: OptionsPageProps) => {
         </div>
 
         <Modal opened={videoSelectOpened} onClose={videoSelectHandler.close} title="Select a video">
-          <VideoSelect />
+          <VideoSelect videos={options.videos} setVideos={setVideos}/>
         </Modal>
 
         <Button onClick={videoSelectHandler.open}>
-          Select background video
+          Add new video
         </Button>
 
         <Button onClick={handleResetToDefault}>
