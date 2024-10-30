@@ -52,7 +52,11 @@ const OptionsPage = ({setPage, options, setOptions}: OptionsPageProps) => {
   }
 
   function handleChangeRandomRange(event: ChangeEvent<HTMLInputElement>) {
-    setRandomRange(Number(event.target.value))
+    const newRandomRange = Number(event.target.value)
+    setRandomRange(newRandomRange)
+    const newOptions = {...options}
+    newOptions.randomRange = newRandomRange
+    setOptions(newOptions)
   }
 
   function handleResetToDefault() {
