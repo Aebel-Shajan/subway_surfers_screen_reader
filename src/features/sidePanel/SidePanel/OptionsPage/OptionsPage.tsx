@@ -5,6 +5,7 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 import CustomSelect from "@/components/CustomSelect/CustomSelect";
 import { ChangeEvent, useState } from "react";
 import { ExtensionOptions } from "@/types/options";
+import { DEFAULT_OPTIONS } from "@/constants";
 
 interface OptionsPageProps {
   setPage: CallableFunction,
@@ -54,6 +55,14 @@ const OptionsPage = ({setPage, options, setOptions}: OptionsPageProps) => {
     }
   }
 
+  function handleResetToDefault() {
+    setSelectedVideo(DEFAULT_OPTIONS.selectedVideo)
+    setStartTime(DEFAULT_OPTIONS.startTime)
+    setDuration(DEFAULT_OPTIONS.duration)
+    setRandomStart(DEFAULT_OPTIONS.randomStart)
+    setOptions(DEFAULT_OPTIONS)
+  }
+
   return ( 
     <div className={styles.container}>
       <Header>
@@ -72,7 +81,7 @@ const OptionsPage = ({setPage, options, setOptions}: OptionsPageProps) => {
           options={options.videos}
         />
         <div>
-          <label>Start offset time: {startTime}</label>
+          <label>Start offset time: {startTime}s</label>
           <input 
             type="range" 
             min="0" 
@@ -97,6 +106,10 @@ const OptionsPage = ({setPage, options, setOptions}: OptionsPageProps) => {
           <label >Start at random time</label>
           <input type="checkbox" checked={randomStart}/>
         </div>
+
+        <Button onClick={handleResetToDefault}>
+          Reset to default
+        </Button>
       </div>
     </div>
   );
