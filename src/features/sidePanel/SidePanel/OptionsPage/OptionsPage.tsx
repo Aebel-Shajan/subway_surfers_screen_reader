@@ -6,6 +6,9 @@ import CustomSelect from "@/components/CustomSelect/CustomSelect";
 import { ChangeEvent, useState } from "react";
 import { ExtensionOptions } from "@/types/options";
 import { DEFAULT_OPTIONS } from "@/constants";
+import { useDisclosure } from "@mantine/hooks";
+import { Modal } from "@mantine/core";
+import VideoSelect from "./VideoSelect/VideoSelect";
 
 interface OptionsPageProps {
   setPage: CallableFunction,
@@ -13,12 +16,16 @@ interface OptionsPageProps {
   setOptions: CallableFunction
 }
 const OptionsPage = ({setPage, options, setOptions}: OptionsPageProps) => {
+  // States
   const [selectedVideo, setSelectedVideo] = useState<number>(options.selectedVideo)
   const [randomStart, setRandomStart] = useState<boolean>(options.randomStart)
   const [startTime, setStartTime] = useState<number>(options.startTime)
   const [duration, setDuration] = useState<number>(options.duration)
 
-
+  // Mantine Hooks
+  const [videoSelectOpened, videoSelectHandler] = useDisclosure(false)
+  
+  // Functions
   function handleSelectVideo(videoIndex: number) {
     setSelectedVideo(videoIndex)
     const newOptions = {...options}
@@ -106,6 +113,14 @@ const OptionsPage = ({setPage, options, setOptions}: OptionsPageProps) => {
           <label >Start at random time</label>
           <input type="checkbox" checked={randomStart}/>
         </div>
+
+        <Modal opened={videoSelectOpened} onClose={videoSelectHandler.close} title="Select a video">
+          <VideoSelect />
+        </Modal>
+
+        <Button onClick={videoSelectHandler.open}>
+          Select background video
+        </Button>
 
         <Button onClick={handleResetToDefault}>
           Reset to default
