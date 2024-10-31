@@ -101,10 +101,17 @@ const MainPage = (
    */
   async function startScreenReader(textToRead: string) {
     if (!youtubeRef.current) return 
-    if (options.randomStart) {
-      seekVideoToRandomTime(youtubeRef.current, options.startTime, options.startTime + options.randomRange)
-    } else {
-      seekVideoPlayer(youtubeRef.current, options.startTime)
+    switch (options.videoStart) {
+      default:
+      case "beginning":
+        seekVideoPlayer(youtubeRef.current, 0)
+        break
+      case "timestamp":
+        seekVideoPlayer(youtubeRef.current, options.startTime)
+        break
+      case "random":
+        seekVideoToRandomTime(youtubeRef.current, options.randomRange[0], options.randomRange[1])
+        break
     }
     await delay(500)
     playVideoPlayer(youtubeRef.current)
@@ -256,7 +263,7 @@ const MainPage = (
       </PanelResizeHandle>
       <Panel defaultSize={70}>
         <div className={styles.lowerPanel}>
-          <Youtube videoUrl={options.videos[options.selectedVideo].url} ref={youtubeRef} />
+          <Youtube videoUrl={options.videos.filter((vid => vid.index === options.selectedVideo))[0].url} ref={youtubeRef} />
           <div className={styles.overlay}>
             {isPlaying ? <p>{currentWord}</p> : null}
           </div>

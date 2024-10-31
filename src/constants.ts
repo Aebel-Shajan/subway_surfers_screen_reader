@@ -16,7 +16,13 @@ export const DEFAULT_VIDEOS: VideoInfo[] = [
 export const DEFAULT_OPTIONS: ExtensionOptions = {
     selectedVideo: 0,
     videos: DEFAULT_VIDEOS,
+    videoStart: "timestamp",
     startTime: 240,
-    randomRange: 3600,
-    randomStart: true
+    randomRange: [0, 3600],
 }
+
+export const VIDEO_START_OPTIONS = [
+    "beginning",
+    "timestamp",
+    "random"
+] as const

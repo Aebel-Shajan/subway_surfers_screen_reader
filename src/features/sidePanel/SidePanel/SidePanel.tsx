@@ -20,7 +20,7 @@ const SidePanel = () => {
         setOptions({
           selectedVideo: newOptions.selectedVideo ? newOptions.selectedVideo : DEFAULT_OPTIONS.selectedVideo,
           startTime: newOptions.startTime ? newOptions.startTime : DEFAULT_OPTIONS.startTime,
-          randomStart: newOptions.randomStart ? newOptions.randomStart : DEFAULT_OPTIONS.randomStart,
+          videoStart: newOptions.videoStart ? newOptions.videoStart : DEFAULT_OPTIONS.videoStart,
           randomRange: newOptions.randomRange ? newOptions.randomRange : DEFAULT_OPTIONS.randomRange,
           videos: newOptions.videos ? newOptions.videos : DEFAULT_OPTIONS.videos,
         })

@@ -2,13 +2,13 @@ import Header from "@/components/Header/Header";
 import styles from "./OptionsPage.module.css"
 import Button from "@/components/Button/Button";
 import { IoMdArrowRoundBack } from "react-icons/io";
-import CustomSelect from "@/components/CustomSelect/CustomSelect";
 import { ChangeEvent, useState } from "react";
-import { ExtensionOptions, VideoInfo } from "@/types/options";
-import { DEFAULT_OPTIONS } from "@/constants";
+import { ExtensionOptions, VideoInfo, VideoStartOptions } from "@/types/options";
+import { DEFAULT_OPTIONS, VIDEO_START_OPTIONS } from "@/constants";
 import { useDisclosure } from "@mantine/hooks";
-import { Modal } from "@mantine/core";
+import { Modal, Select } from "@mantine/core";
 import VideoSelect from "./VideoSelect/VideoSelect";
+
 
 interface OptionsPageProps {
   setPage: CallableFunction,
@@ -18,28 +18,22 @@ interface OptionsPageProps {
 const OptionsPage = ({setPage, options, setOptions}: OptionsPageProps) => {
   // States
   const [selectedVideo, setSelectedVideo] = useState<number>(options.selectedVideo)
-  const [randomStart, setRandomStart] = useState<boolean>(options.randomStart)
+  const [videoStart, setVideoStart] = useState<VideoStartOptions>(options.videoStart)
   const [startTime, setStartTime] = useState<number>(options.startTime)
-  const [randomRange, setRandomRange] = useState<number>(options.randomRange)
+  const [, setRandomRange] = useState<[number, number]>(options.randomRange)
 
   // Mantine Hooks
   const [videoSelectOpened, videoSelectHandler] = useDisclosure(false)
   
   // Functions
-  function handleSelectVideo(videoIndex: number) {
-    setSelectedVideo(videoIndex)
+  function handleSelectVideo(value: string|null) {
+    if (!value) return
+    setSelectedVideo(Number(value))
     const newOptions = {...options}
-    newOptions.selectedVideo = videoIndex
+    newOptions.selectedVideo = Number(value)
     setOptions(newOptions)
   } 
 
-  function handleCheckRandomStart() {
-    setRandomStart(oldValue => !oldValue)
-    const newOptions = {...options}
-    newOptions.randomStart = !randomStart
-    setOptions(newOptions)
-  }
-  
   function handleChangeStartTime(event: ChangeEvent<HTMLInputElement>) {
     const newTime = Number(event.target.value)
     setStartTime(newTime)
@@ -51,19 +45,13 @@ const OptionsPage = ({setPage, options, setOptions}: OptionsPageProps) => {
     setOptions(newOptions)
   }
 
-  function handleChangeRandomRange(event: ChangeEvent<HTMLInputElement>) {
-    const newRandomRange = Number(event.target.value)
-    setRandomRange(newRandomRange)
-    const newOptions = {...options}
-    newOptions.randomRange = newRandomRange
-    setOptions(newOptions)
-  }
 
   function handleResetToDefault() {
     setSelectedVideo(DEFAULT_OPTIONS.selectedVideo)
+    setVideoStart(DEFAULT_OPTIONS.videoStart)
     setStartTime(DEFAULT_OPTIONS.startTime)
     setRandomRange(DEFAULT_OPTIONS.randomRange)
-    setRandomStart(DEFAULT_OPTIONS.randomStart)
+
     // Preserve user vids
     const newOptions = {...DEFAULT_OPTIONS}
     newOptions.videos = options.videos
@@ -87,12 +75,22 @@ const OptionsPage = ({setPage, options, setOptions}: OptionsPageProps) => {
           <span>Options</span>
       </Header>
       <div className={styles.optionsContainer}>
-        <CustomSelect
+        <Select
           label="Set background video"
-          selected={selectedVideo}
-          setSelected={handleSelectVideo}
-          options={options.videos}
+          value={String(selectedVideo)}
+          onChange={handleSelectVideo}
+          data={options.videos.map((vid) => {
+            return {label: vid.name, value: String(vid.index)}
+          })}
+          allowDeselect={false}
         />
+        <Select 
+          label="Start the video from: "
+          value={videoStart}
+          onChange={(value) => setVideoStart(value as VideoStartOptions)}
+          data={VIDEO_START_OPTIONS}
+        />
+
         <div>
           <label>Start offset time: {startTime}s</label>
           <input 
@@ -104,21 +102,6 @@ const OptionsPage = ({setPage, options, setOptions}: OptionsPageProps) => {
             onMouseUp={handleStartTimePicked}
             onTouchEnd={handleStartTimePicked}
           />
-        </div>
-        <div onClick={handleCheckRandomStart}>
-          <label >Start at random time</label>
-          <input type="checkbox" checked={randomStart}/>
-        </div>
-        <div>
-          <label style={!randomStart ? {color: "grey"}: {}}>Random time range</label>
-          <input 
-            type="number" 
-            min="0" 
-            max={7200}
-            value={randomRange}
-            onChange={handleChangeRandomRange}
-            disabled= {!randomStart}
-            />
         </div>
 
         <Modal opened={videoSelectOpened} onClose={videoSelectHandler.close} title="Select a video">
