@@ -80,3 +80,49 @@ export function cleanUpText(text: string): string {
 		// add space to end of sentences
 		.replace(/(?<=[A-Za-z0-9])\.(?=[A-Z])/g, '. ');
 }
+
+/**
+ * Formats a time string into a number of seconds.
+ * 
+ * @param timeString - The time string to be converted.
+ * @param format - The format of the time string. Either "hh:mm", "hh:mm:ss", or "mm:ss".
+ * @returns The number of seconds represented by the time string.
+ */
+export function timeStringToSeconds(timeString: string, format: "hh:mm"|"hh:mm:ss"|"mm:ss"): number {
+    const parts = timeString.split(':').map(Number);
+    
+    if (format === "hh:mm" && parts.length === 2) {
+        return 3600 * parts[0] + 60 * parts[1];
+    } else if (format === "mm:ss" && parts.length === 2) {
+        return 60 * parts[0] + parts[1];
+    } else if (format === "hh:mm:ss" && parts.length === 3) {
+        return 3600 * parts[0] + 60 * parts[1] + parts[2];
+    } else {
+        return 0;
+    }
+}
+
+/**
+ * Converts a number of seconds into a formatted time string.
+ * 
+ * @param time - The number of seconds to be converted.
+ * @param format - The desired format of the time string. Either "hh:mm", "hh:mm:ss", or "mm:ss".
+ * @returns The formatted time string.
+ */
+export function secondsToTimeString(time: number, format: "hh:mm"|"hh:mm:ss"|"mm:ss"): string {
+    const hours = Math.floor(time / 3600);
+    const minutes = Math.floor((time % 3600) / 60);
+    const seconds = time % 60;
+
+    const pad = (num: number) => num.toString().padStart(2, '0');
+
+    if (format === "hh:mm") {
+        return `${pad(hours)}:${pad(minutes)}`;
+    } else if (format === "hh:mm:ss") {
+        return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+    } else if (format === "mm:ss") {
+        return `${pad(minutes)}:${pad(seconds)}`;
+    } else {
+        return "00:00";
+    }
+}
