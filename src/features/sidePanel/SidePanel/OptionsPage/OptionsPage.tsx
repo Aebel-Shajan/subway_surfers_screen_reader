@@ -147,8 +147,17 @@ const OptionsPage = ({ setPage, options, setOptions }: OptionsPageProps) => {
           allowDeselect={false}
         />
 
-        <Modal opened={videoSelectOpened} onClose={videoSelectHandler.close} title="Select a video">
-          <VideoSelect videos={options.videos} setVideos={setVideos} />
+        <Modal 
+          opened={videoSelectOpened} 
+          onClose={videoSelectHandler.close} 
+          title="Select a video"
+        >
+          <VideoSelect 
+            videos={options.videos} 
+            setVideos={setVideos}
+            handleSelectVideo={handleSelectVideo}
+            selectedVideo={selectedVideo}
+          />
         </Modal>
 
         <Button onClick={videoSelectHandler.open}>

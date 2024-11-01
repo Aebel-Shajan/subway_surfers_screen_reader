@@ -8,11 +8,13 @@ import { CgClose } from "react-icons/cg";
 
 interface VideoSelectProps {
   videos: VideoInfo[],
-  setVideos: CallableFunction
+  setVideos: CallableFunction,
+  handleSelectVideo: CallableFunction,
+  selectedVideo: number
 }
 
 
-const VideoSelect = ({ videos, setVideos }: VideoSelectProps) => {
+const VideoSelect = ({ videos, setVideos, handleSelectVideo, selectedVideo}: VideoSelectProps) => {
   // States
   const [name, setName] = useState<string>("")
   const [url, setUrl] = useState<string>("")
@@ -52,6 +54,9 @@ const VideoSelect = ({ videos, setVideos }: VideoSelectProps) => {
     }
     const newVideos = videos.filter(video => video.index !== videoToRemove.index)
     setVideos(newVideos)
+    if (selectedVideo === videoToRemove.index) {
+      handleSelectVideo("0")
+    }
   }
 
   function isVideoDefault(videoToCheck: VideoInfo) {

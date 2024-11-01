@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
 import styles from "./Youtube.module.css";
 import getVideoId from 'get-video-id';
+import { DEFAULT_OPTIONS} from "@/constants";
 
 interface YoutubeProps{
     videoUrl: string
@@ -9,7 +10,7 @@ interface YoutubeProps{
 const Youtube = ({videoUrl}: YoutubeProps, ref: React.ForwardedRef<HTMLIFrameElement>) => {
     let videoId: string | undefined = getVideoId(videoUrl).id
     if (!videoId) {
-        videoId = "ZWcRmoLqhkc"
+        videoId = getVideoId(DEFAULT_OPTIONS.videos[DEFAULT_OPTIONS.selectedVideo].url).id // never undefined
     }
 
     return (

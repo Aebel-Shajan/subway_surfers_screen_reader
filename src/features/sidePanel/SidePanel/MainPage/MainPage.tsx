@@ -177,6 +177,13 @@ const MainPage = (
     }
   }
 
+  function getVideoUrl(index: number) {
+    const filteredVids = options.videos.filter((vid => vid.index === index))
+    console.log(index)
+    if (filteredVids.length===0) return ""
+    return filteredVids[0].url
+  }
+
   // Use effect hooks
 
   // On initial render
@@ -263,7 +270,7 @@ const MainPage = (
       </PanelResizeHandle>
       <Panel defaultSize={70}>
         <div className={styles.lowerPanel}>
-          <Youtube videoUrl={options.videos.filter((vid => vid.index === options.selectedVideo))[0].url} ref={youtubeRef} />
+          <Youtube videoUrl={getVideoUrl(options.selectedVideo)} ref={youtubeRef} />
           <div className={styles.overlay}>
             {isPlaying ? <p>{currentWord}</p> : null}
           </div>
@@ -272,5 +279,8 @@ const MainPage = (
     </PanelGroup>
   );
 }
+
+
+
 
 export default MainPage;
