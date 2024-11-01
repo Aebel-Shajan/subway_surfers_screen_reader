@@ -67,7 +67,7 @@ const VideoSelect = ({ videos, setVideos, handleSelectVideo, selectedVideo}: Vid
   const rows = videos.map((video) => (
     <Table.Tr key={video.index}>
       <Table.Td>{video.name}</Table.Td>
-      <Table.Td>{video.url}</Table.Td>
+      <Table.Td style={{wordBreak: "break-all"}}>{video.url}</Table.Td>
       <Table.Td>
         {
           isVideoDefault(video) 
