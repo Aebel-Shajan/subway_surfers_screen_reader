@@ -5,9 +5,10 @@ import { DEFAULT_OPTIONS } from "@/constants";
 
 interface YoutubeProps {
   videoUrl: string
+  mute: boolean
 }
 
-const Youtube = ({ videoUrl }: YoutubeProps, ref: React.ForwardedRef<HTMLIFrameElement>) => {
+const Youtube = ({ videoUrl, mute }: YoutubeProps, ref: React.ForwardedRef<HTMLIFrameElement>) => {
   let videoId: string | undefined = getVideoId(videoUrl).id
   if (!videoId) {
     videoId = getVideoId(DEFAULT_OPTIONS.videos[DEFAULT_OPTIONS.selectedVideo].url).id // never undefined
@@ -22,7 +23,7 @@ const Youtube = ({ videoUrl }: YoutubeProps, ref: React.ForwardedRef<HTMLIFrameE
           className={styles.iframe}
           ref={ref}
           id="video"
-          src={`https://www.youtube.com/embed/${videoId}?mute=1&enablejsapi=1`}
+          src={`https://www.youtube.com/embed/${videoId}?mute=${Number(mute)}&enablejsapi=1`}
         />
       </div>
     </div>

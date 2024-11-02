@@ -35,6 +35,7 @@ export const DEFAULT_OPTIONS: ExtensionOptions = {
     videoStart: "beginning",
     startTime: 240,
     randomRange: [0, 3600],
+    muteVideo: true
 }
 
 export const VIDEO_START_OPTIONS = [

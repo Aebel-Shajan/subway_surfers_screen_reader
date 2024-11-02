@@ -79,7 +79,7 @@ const PromoSection = () => {
         </Stack>
       </Card>
 
-      <Stack>
+      <Stack className={styles.buttonContainer}>
         <Button onClick={redirect("https://github.com/Aebel-Shajan/subway_surfers_screen_reader")}>
           <FaGithub/> Star the repo
         </Button>

@@ -270,7 +270,7 @@ const MainPage = (
       </PanelResizeHandle>
       <Panel defaultSize={70}>
         <div className={styles.lowerPanel}>
-          <Youtube videoUrl={getVideoUrl(options.selectedVideo)} ref={youtubeRef} />
+          <Youtube videoUrl={getVideoUrl(options.selectedVideo)} mute={options.muteVideo} ref={youtubeRef} />
           <div className={styles.overlay}>
             {isPlaying ? <p style={{fontSize: 20}}>{currentWord}</p> : null}
           </div>

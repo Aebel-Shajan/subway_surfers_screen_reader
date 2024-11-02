@@ -17,12 +17,14 @@ const SidePanel = () => {
       if (data.options) {
         const newOptions: ExtensionOptions = { ...data.options }
         // I LOVE JAVASCRITP
+        // Just in case options are whack
         setOptions({
           selectedVideo: newOptions.selectedVideo ? newOptions.selectedVideo : DEFAULT_OPTIONS.selectedVideo,
           startTime: newOptions.startTime ? newOptions.startTime : DEFAULT_OPTIONS.startTime,
           videoStart: newOptions.videoStart ? newOptions.videoStart : DEFAULT_OPTIONS.videoStart,
           randomRange: newOptions.randomRange ? newOptions.randomRange : DEFAULT_OPTIONS.randomRange,
           videos: newOptions.videos ? newOptions.videos : DEFAULT_OPTIONS.videos,
+          muteVideo: newOptions.muteVideo ? newOptions.muteVideo : DEFAULT_OPTIONS.muteVideo
         })
       }
     })

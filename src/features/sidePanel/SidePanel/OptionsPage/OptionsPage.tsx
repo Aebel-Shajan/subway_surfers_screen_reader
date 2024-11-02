@@ -6,7 +6,7 @@ import { useState } from "react";
 import { ExtensionOptions, VideoInfo, VideoStartOptions } from "@/types/options";
 import { DEFAULT_OPTIONS, VIDEO_START_OPTIONS } from "@/constants";
 import { useDisclosure } from "@mantine/hooks";
-import { CloseButton, Modal, Select } from "@mantine/core";
+import { Checkbox, CloseButton, Modal, Select } from "@mantine/core";
 import VideoSelect from "./VideoSelect/VideoSelect";
 import { TimeInput } from "@mantine/dates";
 import { secondsToTimeString, timeStringToSeconds } from "@/utils/utils";
@@ -23,6 +23,7 @@ const OptionsPage = ({ setPage, options, setOptions }: OptionsPageProps) => {
   const [videoStart, setVideoStart] = useState<VideoStartOptions>(options.videoStart)
   const [startTime, setStartTime] = useState<number>(options.startTime)
   const [randomRange, setRandomRange] = useState<[number, number]>(options.randomRange)
+  const [muteVideo, setMuteVideo] = useState<boolean>(options.muteVideo)
 
   // Mantine Hooks
   const [videoSelectOpened, videoSelectHandler] = useDisclosure(false)
@@ -34,6 +35,14 @@ const OptionsPage = ({ setPage, options, setOptions }: OptionsPageProps) => {
     const newOptions = { ...options }
     newOptions.selectedVideo = Number(value)
     setOptions(newOptions)
+  }
+
+  function handleMuteVideo(event: React.ChangeEvent<HTMLInputElement> ) {
+    setMuteVideo(event.currentTarget.checked)
+    const newOptions = {...options}
+    newOptions.muteVideo = event.currentTarget.checked
+    setOptions(newOptions)
+    console.log(options)
   }
 
   function handleSelectVideoStart(value: string| null) {
@@ -81,6 +90,7 @@ const OptionsPage = ({ setPage, options, setOptions }: OptionsPageProps) => {
     setVideoStart(DEFAULT_OPTIONS.videoStart)
     setStartTime(DEFAULT_OPTIONS.startTime)
     setRandomRange(DEFAULT_OPTIONS.randomRange)
+    setMuteVideo(DEFAULT_OPTIONS.muteVideo)
 
     // Preserve user vids
     const newOptions = { ...DEFAULT_OPTIONS }
@@ -165,6 +175,12 @@ const OptionsPage = ({ setPage, options, setOptions }: OptionsPageProps) => {
         <Button onClick={videoSelectHandler.open}>
           Add new video
         </Button>
+        
+        <Checkbox
+          label="Mute the video"
+          checked={muteVideo}
+          onChange={handleMuteVideo}
+        />
 
         <Select
           label="Start the video from: "
@@ -177,7 +193,7 @@ const OptionsPage = ({ setPage, options, setOptions }: OptionsPageProps) => {
 
         <Button 
           onClick={handleResetToDefault}
-          style={{border: "3px solid black"}}
+          style={{border: "3px solid black", color: "black"}}
         >
           Reset to default
         </Button>

@@ -6,7 +6,8 @@ export interface ExtensionOptions {
     videos: VideoInfo[],
     videoStart: VideoStartOptions,
     startTime: number,
-    randomRange: [number, number]
+    randomRange: [number, number],
+    muteVideo: boolean
   }
   
 export interface VideoInfo {
