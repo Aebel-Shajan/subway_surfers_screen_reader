@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Subway Surfers Screen Reader",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Screen reader with integrated subway surfers gameplay.",
     "icons": {
         "128": "assets/genz-screenreader-logo.png"
