@@ -14,13 +14,13 @@ export const DEFAULT_VIDEOS: VideoInfo[] = [
     },
     {
         index: 2,
-        name: "subway surfers 2",
-        url: "https://www.youtube.com/watch?v=BkWT66jE8Hs"
+        name: "family guy funny moments",
+        url: "https://www.youtube.com/embed/rf9bO6dqVXI"
     },
     {
         index: 3,
-        name: "satisfying videos",
-        url: "https://www.youtube.com/watch?v=WA6ePGoJ6Mk&t=6s"
+        name: "lofi hip hop",
+        url: "https://www.youtube.com/watch?v=l98w9OSKVNA"
     },
     {
         index: 4,

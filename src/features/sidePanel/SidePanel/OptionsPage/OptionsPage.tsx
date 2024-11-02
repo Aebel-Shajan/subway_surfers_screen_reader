@@ -84,7 +84,7 @@ const OptionsPage = ({ setPage, options, setOptions }: OptionsPageProps) => {
 
     // Preserve user vids
     const newOptions = { ...DEFAULT_OPTIONS }
-    newOptions.videos = options.videos
+    newOptions.videos = options.videos // comment this out when updating default vids
     setOptions(newOptions)
   }
 
