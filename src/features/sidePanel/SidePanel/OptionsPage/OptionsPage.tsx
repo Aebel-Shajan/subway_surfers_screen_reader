@@ -10,6 +10,7 @@ import { CloseButton, Modal, Select } from "@mantine/core";
 import VideoSelect from "./VideoSelect/VideoSelect";
 import { TimeInput } from "@mantine/dates";
 import { secondsToTimeString, timeStringToSeconds } from "@/utils/utils";
+import PromoSection from "@/components/PromoSection/PromoSection";
 
 interface OptionsPageProps {
   setPage: CallableFunction,
@@ -137,6 +138,7 @@ const OptionsPage = ({ setPage, options, setOptions }: OptionsPageProps) => {
         <span>Options</span>
       </Header>
       <div className={styles.optionsContainer}>
+      <h3>Options</h3>
         <Select
           label="Set background video"
           value={String(selectedVideo)}
@@ -173,9 +175,15 @@ const OptionsPage = ({ setPage, options, setOptions }: OptionsPageProps) => {
         />
         {videoStartConfig()}
 
-        <Button onClick={handleResetToDefault}>
+        <Button 
+          onClick={handleResetToDefault}
+          style={{border: "3px solid black"}}
+        >
           Reset to default
         </Button>
+
+        <hr />
+        <PromoSection/>
       </div>
     </div>
   );
