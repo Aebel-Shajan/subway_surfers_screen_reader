@@ -272,7 +272,7 @@ const MainPage = (
         <div className={styles.lowerPanel}>
           <Youtube videoUrl={getVideoUrl(options.selectedVideo)} ref={youtubeRef} />
           <div className={styles.overlay}>
-            {isPlaying ? <p>{currentWord}</p> : null}
+            {isPlaying ? <p style={{fontSize: 20}}>{currentWord}</p> : null}
           </div>
         </div>
       </Panel>
