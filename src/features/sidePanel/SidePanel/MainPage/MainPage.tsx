@@ -115,7 +115,7 @@ const MainPage = (
     }
     await delay(500)
     playVideoPlayer(youtubeRef.current)
-    await delay(500)
+    await delay(1500)
     chrome.tts.speak(textToRead, { onEvent: (event) => ttsEventHandler(event, textToRead) });
   }
 
