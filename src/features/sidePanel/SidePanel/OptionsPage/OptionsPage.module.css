@@ -1,0 +1,17 @@
+.container {
+    width: 100%;
+    min-height: 100vh;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--third);
+}
+
+.optionsContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-grow: 1;
+    gap: 1rem;
+    padding: 1rem;
+}
